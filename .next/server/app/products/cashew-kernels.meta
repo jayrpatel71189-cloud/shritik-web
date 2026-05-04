@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/products/layout,_N_T_/products/cashew-kernels/layout,_N_T_/products/cashew-kernels/page,_N_T_/products/cashew-kernels"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/products/cashew-kernels/__PAGE__",
+    "/products/cashew-kernels",
+    "/products",
+    "/_index",
+    "/_head"
+  ]
+}

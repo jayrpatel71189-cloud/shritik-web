@@ -1,0 +1,7 @@
+{
+  "/contact/page": "app/contact/page.js",
+  "/export/page": "app/export/page.js",
+  "/page": "app/page.js",
+  "/private-label/page": "app/private-label/page.js",
+  "/products/cashew-kernels/page": "app/products/cashew-kernels/page.js"
+}

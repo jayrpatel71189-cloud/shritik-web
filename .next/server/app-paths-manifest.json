@@ -1,0 +1,16 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/export/page": "app/export/page.js",
+  "/infrastructure/page": "app/infrastructure/page.js",
+  "/page": "app/page.js",
+  "/private-label/page": "app/private-label/page.js",
+  "/products/cashew-kernels/page": "app/products/cashew-kernels/page.js",
+  "/products/dehydrated-garlic/page": "app/products/dehydrated-garlic/page.js",
+  "/products/dehydrated-ginger/page": "app/products/dehydrated-ginger/page.js",
+  "/products/dehydrated-onion/page": "app/products/dehydrated-onion/page.js",
+  "/products/page": "app/products/page.js",
+  "/quality/page": "app/quality/page.js"
+}

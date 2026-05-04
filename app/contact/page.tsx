@@ -1,0 +1,217 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { ArrowRight, Mail, Phone, MapPin, CheckCircle, Send, Loader2 } from 'lucide-react';
+
+type FormData = {
+  name: string;
+  company: string;
+  country: string;
+  email: string;
+  phone: string;
+  product: string;
+  quantity: string;
+  message: string;
+};
+
+type FormErrors = Partial<Record<keyof FormData, string>>;
+
+const products = [
+  'Cashew Kernels (W-Grades)',
+  'Cashew Kernels (Splits/Pieces)',
+  'Dehydrated Onion',
+  'Dehydrated Garlic',
+  'Dehydrated Ginger',
+  'Multiple Products',
+  'Private Label Inquiry',
+  'Other',
+];
+
+function validate(data: FormData): FormErrors {
+  const errors: FormErrors = {};
+  if (!data.name.trim()) errors.name = 'Name is required';
+  if (!data.company.trim()) errors.company = 'Company is required';
+  if (!data.country.trim()) errors.country = 'Country is required';
+  if (!data.email.trim()) errors.email = 'Email is required';
+  else if (!/\S+@\S+\.\S+/.test(data.email)) errors.email = 'Invalid email address';
+  if (!data.phone.trim()) errors.phone = 'Phone number is required';
+  if (!data.product) errors.product = 'Please select a product';
+  if (!data.message.trim()) errors.message = 'Message is required';
+  return errors;
+}
+
+export default function ContactPage() {
+  const [form, setForm] = useState<FormData>({
+    name: '', company: '', country: '', email: '', phone: '', product: '', quantity: '', message: '',
+  });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (errors[name as keyof FormData]) setErrors((prev) => ({ ...prev, [name]: undefined }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validate(form);
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    setSubmitting(true);
+    await new Promise((r) => setTimeout(r, 1500));
+    setSubmitting(false);
+    setSubmitted(true);
+  };
+
+  return (
+    <>
+      <div className="page-hero">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="breadcrumb">
+            <Link href="/">Home</Link><span>/</span>
+            <span className="text-white">Contact Us</span>
+          </div>
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Contact Us</h1>
+          <p className="text-green-100 text-lg max-w-2xl">Send us your export inquiry, product requirement, or request for samples. We respond within 24 hours.</p>
+        </div>
+      </div>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Form */}
+            <div className="lg:col-span-2">
+              {submitted ? (
+                <div className="flex flex-col items-center justify-center py-20 text-center">
+                  <div className="w-20 h-20 rounded-full bg-[#f0fdf4] flex items-center justify-center mb-6">
+                    <CheckCircle className="w-10 h-10 text-[#2d6a4f]" />
+                  </div>
+                  <h2 className="font-serif text-3xl font-bold text-[#1a472a] mb-3">Inquiry Received!</h2>
+                  <p className="text-gray-600 max-w-md mb-8">Thank you for reaching out. Our export team will review your inquiry and respond within 24 hours.</p>
+                  <button onClick={() => { setSubmitted(false); setForm({ name: '', company: '', country: '', email: '', phone: '', product: '', quantity: '', message: '' }); }} className="btn-primary">
+                    Send Another Inquiry <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  <h2 className="font-serif text-2xl font-bold text-[#1a472a] mb-6">Send Export Inquiry</h2>
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="form-label">Full Name *</label>
+                      <input name="name" value={form.name} onChange={handleChange} className="form-input" placeholder="Your full name" />
+                      {errors.name && <p className="form-error">{errors.name}</p>}
+                    </div>
+                    <div>
+                      <label className="form-label">Company Name *</label>
+                      <input name="company" value={form.company} onChange={handleChange} className="form-input" placeholder="Your company name" />
+                      {errors.company && <p className="form-error">{errors.company}</p>}
+                    </div>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="form-label">Country *</label>
+                      <input name="country" value={form.country} onChange={handleChange} className="form-input" placeholder="Your country" />
+                      {errors.country && <p className="form-error">{errors.country}</p>}
+                    </div>
+                    <div>
+                      <label className="form-label">Email Address *</label>
+                      <input name="email" type="email" value={form.email} onChange={handleChange} className="form-input" placeholder="your@email.com" />
+                      {errors.email && <p className="form-error">{errors.email}</p>}
+                    </div>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="form-label">Phone / WhatsApp *</label>
+                      <input name="phone" value={form.phone} onChange={handleChange} className="form-input" placeholder="+1 234 567 8900" />
+                      {errors.phone && <p className="form-error">{errors.phone}</p>}
+                    </div>
+                    <div>
+                      <label className="form-label">Product of Interest *</label>
+                      <select name="product" value={form.product} onChange={handleChange} className="form-input">
+                        <option value="">Select a product...</option>
+                        {products.map((p) => <option key={p} value={p}>{p}</option>)}
+                      </select>
+                      {errors.product && <p className="form-error">{errors.product}</p>}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="form-label">Quantity Required (optional)</label>
+                    <input name="quantity" value={form.quantity} onChange={handleChange} className="form-input" placeholder="e.g., 5 MT per month" />
+                  </div>
+                  <div>
+                    <label className="form-label">Your Message / Requirements *</label>
+                    <textarea name="message" value={form.message} onChange={handleChange} rows={5} className="form-input resize-none" placeholder="Tell us about your product requirements, grade preferences, packaging needs, certifications required..." />
+                    {errors.message && <p className="form-error">{errors.message}</p>}
+                  </div>
+                  <button type="submit" disabled={submitting} className="btn-primary w-full sm:w-auto justify-center">
+                    {submitting ? (
+                      <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</>
+                    ) : (
+                      <><Send className="w-4 h-4" /> Send Inquiry</>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-6">
+              <div className="bg-[#f8fdf9] border border-green-100 rounded-2xl p-6">
+                <h3 className="font-semibold text-[#1a472a] mb-4">Contact Information</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Address</p>
+                      <p className="text-sm text-gray-600">India</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Mail className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Email</p>
+                      <a href="mailto:info@shritikenterprises.com" className="text-sm text-[#2d6a4f] hover:text-[#1a472a]">info@shritikenterprises.com</a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Phone / WhatsApp</p>
+                      <a href="tel:+91XXXXXXXXXX" className="text-sm text-[#2d6a4f] hover:text-[#1a472a]">+91-XXXXXXXXXX</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-[#1a472a] rounded-2xl p-6 text-white">
+                <h3 className="font-semibold text-white mb-3">What to Include</h3>
+                <ul className="space-y-2 text-sm text-green-200">
+                  {[
+                    'Product name and grade (if known)',
+                    'Required quantity (MT per month/year)',
+                    'Destination country and port',
+                    'Packaging preference',
+                    'Certifications required (Halal, Kosher, etc.)',
+                    'Any custom specifications',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-[#52b788] flex-shrink-0 mt-0.5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+                <h3 className="font-semibold text-amber-900 mb-2">Response Time</h3>
+                <p className="text-sm text-amber-800">We respond to all export inquiries within <strong>24 business hours</strong>. For urgent inquiries, include your WhatsApp number.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
