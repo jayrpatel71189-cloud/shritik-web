@@ -5,6 +5,26 @@ import { ArrowRight, CheckCircle, Target, Eye, Heart, Globe, Shield, Star } from
 export const metadata: Metadata = {
   title: 'About Us',
   description: 'Shritik Enterprises LLP — India-based manufacturer and exporter of premium cashew kernels and dehydrated food ingredients. Learn about our story, values, and capabilities.',
+  keywords: [
+    'about Shritik Enterprises',
+    'cashew exporter India story',
+    'Indian food manufacturer exporter',
+    'dehydrated food manufacturer India',
+    'FSSAI APEDA certified company India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/about' },
+  openGraph: {
+    title: 'About Shritik Enterprises LLP — Indian Food Exporter',
+    description: 'India-based manufacturer and exporter of premium cashew kernels and dehydrated food ingredients. FSSAI, APEDA, ISO, Halal & Kosher certified.',
+    url: 'https://www.shritikenterprises.com/about',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'About Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Shritik Enterprises LLP — Indian Food Exporter',
+    description: 'India-based manufacturer and exporter of premium cashew kernels and dehydrated food ingredients.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const values = [

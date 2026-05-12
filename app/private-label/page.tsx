@@ -5,6 +5,27 @@ import { ArrowRight, CheckCircle, Package, Star, Zap, Users } from 'lucide-react
 export const metadata: Metadata = {
   title: 'Private Label',
   description: 'Private label cashew kernels, dehydrated onion, garlic, and ginger from India. Custom packaging, branding, and formulation support for food brands worldwide.',
+  keywords: [
+    'private label cashew kernels India',
+    'private label dehydrated vegetables India',
+    'white label food manufacturer India',
+    'custom packaging food export India',
+    'co-packing food ingredients India',
+    'own brand food manufacturing India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/private-label' },
+  openGraph: {
+    title: 'Private Label Food Manufacturing — Shritik Enterprises LLP',
+    description: 'Custom private label cashew kernels, dehydrated onion, garlic, and ginger from India. Your brand, our manufacturing expertise.',
+    url: 'https://www.shritikenterprises.com/private-label',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Private Label Food Manufacturing — Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Private Label Food Manufacturing — Shritik Enterprises LLP',
+    description: 'Custom private label cashew kernels and dehydrated food ingredients from India.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const whoWeServe = [

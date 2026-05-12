@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Analytics } from "@vercel/analytics/next";
+
+const siteUrl = "https://www.shritikenterprises.com";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Shritik Enterprises LLP | Cashew & Dehydrated Food Exporter India",
     template: "%s | Shritik Enterprises LLP",
@@ -12,18 +16,59 @@ export const metadata: Metadata = {
     "Shritik Enterprises LLP is an India-based manufacturer and exporter of premium cashew kernels, dehydrated onion, garlic, and ginger for global food businesses. Certified with FSSAI, APEDA, IEC, ISO, Halal & Kosher.",
   keywords: [
     "cashew kernels exporter India",
-    "dehydrated onion supplier",
-    "dehydrated garlic exporter",
+    "dehydrated onion supplier India",
+    "dehydrated garlic exporter India",
     "dehydrated ginger supplier",
     "Indian food ingredients exporter",
-    "FSSAI certified exporter",
+    "FSSAI certified food exporter",
+    "APEDA registered exporter",
     "bulk food ingredients India",
+    "Halal Kosher certified food India",
+    "cashew W320 W180 exporter",
+    "private label food India",
   ],
+  authors: [{ name: "Shritik Enterprises LLP" }],
+  creator: "Shritik Enterprises LLP",
+  publisher: "Shritik Enterprises LLP",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
+    url: siteUrl,
     siteName: "Shritik Enterprises LLP",
+    title: "Shritik Enterprises LLP | Cashew & Dehydrated Food Exporter India",
+    description:
+      "India-based manufacturer and exporter of certified cashew kernels, dehydrated onion, garlic, and ginger. FSSAI, APEDA, ISO, Halal & Kosher certified. Serving 30+ countries.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Shritik Enterprises LLP — Premium Indian Food Ingredients Exporter",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shritik Enterprises LLP | Cashew & Dehydrated Food Exporter India",
+    description:
+      "India-based manufacturer and exporter of certified cashew kernels, dehydrated onion, garlic, and ginger. Serving 30+ countries.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  category: "food",
 };
 
 export default function RootLayout({
@@ -35,6 +80,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1 pt-16 lg:pt-20">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

@@ -5,6 +5,27 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Dehydrated Onion',
   description: 'Dehydrated onion flakes, minced, granules, and powder — white and red varieties. Exported from India with FSSAI and Halal certification.',
+  keywords: [
+    'dehydrated onion exporter India',
+    'dried onion flakes wholesale India',
+    'onion powder bulk supplier India',
+    'red onion flakes exporter India',
+    'onion granules minced India',
+    'Halal dehydrated onion India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/products/dehydrated-onion' },
+  openGraph: {
+    title: 'Dehydrated Onion Exporter India — Flakes, Granules & Powder',
+    description: 'Dehydrated white and red onion in flakes, minced, granules, and powder form. FSSAI, APEDA & Halal certified. Exported from India.',
+    url: 'https://www.shritikenterprises.com/products/dehydrated-onion',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Dehydrated Onion — Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dehydrated Onion Exporter India — Flakes, Granules & Powder',
+    description: 'White and red dehydrated onion in all forms exported from India. FSSAI & Halal certified.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const products = [
