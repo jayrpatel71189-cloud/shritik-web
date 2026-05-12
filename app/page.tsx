@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Leaf, Shield, Globe, Award, CheckCircle, ChevronRight, Star, Package, Truck, Users, Factory } from 'lucide-react';
+import HeroSlideshow from './components/HeroSlideshow';
 
 function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -122,34 +123,46 @@ export default function HomePage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm text-green-200 font-medium mb-6">
-              <Leaf className="w-4 h-4 text-[#52b788]" />
-              India-based Manufacturer & Exporter
+          <div className="grid lg:grid-cols-12 gap-8 xl:gap-14 items-center w-full">
+
+            {/* Left: text */}
+            <div className="lg:col-span-5">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm text-green-200 font-medium mb-6">
+                <Leaf className="w-4 h-4 text-[#52b788]" />
+                India-based Manufacturer & Exporter
+              </div>
+              <h1 className="font-serif text-5xl sm:text-6xl lg:text-5xl xl:text-[3.25rem] 2xl:text-6xl font-bold text-white leading-tight mb-6">
+                Premium Food <br />
+                <span className="text-gold-gradient">Ingredients</span> for<br />
+                Global Markets
+              </h1>
+              <p className="text-lg sm:text-xl text-green-100 leading-relaxed mb-10 max-w-xl">
+                Shritik Enterprises LLP manufactures and exports certified cashew kernels, dehydrated onion, garlic, and ginger to buyers across 30+ countries. Quality you can trust, supply you can rely on.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/products" className="btn-accent">
+                  Explore Products <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link href="/contact" className="btn-outline">
+                  Request a Quote <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+              <div className="mt-10 flex flex-wrap gap-3">
+                {certifications.map((cert) => (
+                  <span key={cert} className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-white backdrop-blur-sm">
+                    {cert} Certified
+                  </span>
+                ))}
+              </div>
             </div>
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              Premium Food <br />
-              <span className="text-gold-gradient">Ingredients</span> for<br />
-              Global Markets
-            </h1>
-            <p className="text-lg sm:text-xl text-green-100 leading-relaxed mb-10 max-w-2xl">
-              Shritik Enterprises LLP manufactures and exports certified cashew kernels, dehydrated onion, garlic, and ginger to buyers across 30+ countries. Quality you can trust, supply you can rely on.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/products" className="btn-accent">
-                Explore Products <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/contact" className="btn-outline">
-                Request a Quote <ChevronRight className="w-4 h-4" />
-              </Link>
+
+            {/* Right: slideshow */}
+            <div className="lg:col-span-7">
+              <div className="relative h-[280px] sm:h-[360px] lg:h-[460px] xl:h-[520px]">
+                <HeroSlideshow />
+              </div>
             </div>
-            <div className="mt-10 flex flex-wrap gap-3">
-              {certifications.map((cert) => (
-                <span key={cert} className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-white backdrop-blur-sm">
-                  {cert} Certified
-                </span>
-              ))}
-            </div>
+
           </div>
         </div>
       </section>

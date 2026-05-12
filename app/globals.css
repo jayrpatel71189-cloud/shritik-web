@@ -161,3 +161,52 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
 .breadcrumb a:hover { color: white; }
 .breadcrumb span { color: #f0c040; }
+
+/* === Hero Slideshow === */
+@keyframes kenBurns0 {
+  from { transform: scale(1.0) translate(0, 0); }
+  to   { transform: scale(1.13) translate(-1.5%, -0.8%); }
+}
+@keyframes kenBurns1 {
+  from { transform: scale(1.08) translate(1.2%, 0.8%); }
+  to   { transform: scale(1.0) translate(-0.5%, 0); }
+}
+@keyframes kenBurns2 {
+  from { transform: scale(1.05) translate(-1%, 0.5%); }
+  to   { transform: scale(1.12) translate(1.2%, -1%); }
+}
+@keyframes flashBurst {
+  0%   { opacity: 0; }
+  18%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes slideLabelReveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideCounterFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.slide-kb-0 { animation: kenBurns0 7s ease-out forwards; }
+.slide-kb-1 { animation: kenBurns1 7s ease-out forwards; }
+.slide-kb-2 { animation: kenBurns2 7s ease-out forwards; }
+
+.slide-flash {
+  background: radial-gradient(ellipse at 50% 45%,
+    rgba(255, 255, 255, 1)   0%,
+    rgba(255, 252, 220, 0.96) 18%,
+    rgba(255, 240, 160, 0.72) 42%,
+    rgba(220, 255, 220, 0.22) 68%,
+    transparent 100%
+  );
+  animation: flashBurst 0.58s cubic-bezier(0.25, 0, 0.5, 1) forwards;
+}
+
+.slide-label-enter {
+  animation: slideLabelReveal 0.5s ease-out 0.22s both;
+}
+.slide-counter-enter {
+  animation: slideCounterFade 0.4s ease-out 0.3s both;
+}
