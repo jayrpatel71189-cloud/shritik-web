@@ -5,6 +5,27 @@ import { ArrowRight, CheckCircle, Globe, Ship, FileText, Package } from 'lucide-
 export const metadata: Metadata = {
   title: 'Export & Packaging',
   description: 'Shritik Enterprises LLP exports cashew kernels and dehydrated food ingredients to 30+ countries. Learn about our export markets, packaging options, and documentation.',
+  keywords: [
+    'cashew export from India',
+    'dehydrated food export India',
+    'food export packaging India',
+    'FCL LCL food shipment India',
+    'phytosanitary certificate India export',
+    'food export documentation India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/export' },
+  openGraph: {
+    title: 'Export & Packaging — Shritik Enterprises LLP',
+    description: 'Exporting cashew kernels and dehydrated food ingredients to 30+ countries. Full export documentation, flexible packaging, and logistics support.',
+    url: 'https://www.shritikenterprises.com/export',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Export & Packaging — Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Export & Packaging — Shritik Enterprises LLP',
+    description: 'Exporting cashew kernels and dehydrated food ingredients to 30+ countries.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const exportMarkets = [

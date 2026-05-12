@@ -106,9 +106,58 @@ const industries = [
   { emoji: '💊', name: 'Nutraceuticals' },
 ];
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Shritik Enterprises LLP",
+  url: "https://www.shritikenterprises.com",
+  logo: "https://www.shritikenterprises.com/logo.png",
+  description:
+    "India-based manufacturer and exporter of premium cashew kernels, dehydrated onion, garlic, and ginger. Certified with FSSAI, APEDA, IEC, ISO, Halal & Kosher.",
+  email: "info@shritikenterprises.com",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "IN",
+    addressRegion: "Gujarat",
+  },
+  sameAs: [],
+  knowsAbout: [
+    "Cashew Kernels Export",
+    "Dehydrated Onion",
+    "Dehydrated Garlic",
+    "Dehydrated Ginger",
+    "Food Ingredients Export",
+    "Private Label Food",
+  ],
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  url: "https://www.shritikenterprises.com",
+  name: "Shritik Enterprises LLP",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate:
+        "https://www.shritikenterprises.com/products?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Hero */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-[#0d2b14]">
         {/* Dot pattern */}

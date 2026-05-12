@@ -5,6 +5,27 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Products',
   description: 'Explore Shritik Enterprises LLP product range: cashew kernels (W180–W450), dehydrated onion, dehydrated garlic, and dehydrated ginger for global food markets.',
+  keywords: [
+    'cashew kernels W320 W180 India',
+    'dehydrated onion flakes powder India',
+    'dehydrated garlic granules India',
+    'dehydrated ginger powder India',
+    'food ingredients export India',
+    'bulk food ingredients wholesale India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/products' },
+  openGraph: {
+    title: 'Products — Shritik Enterprises LLP',
+    description: 'Cashew kernels (W180–W450), dehydrated onion, garlic, and ginger. All products manufactured in-house, certified, and available for global export.',
+    url: 'https://www.shritikenterprises.com/products',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Food Products — Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Products — Shritik Enterprises LLP',
+    description: 'Cashew kernels, dehydrated onion, garlic, and ginger manufactured and exported from India.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const products = [

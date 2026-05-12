@@ -5,6 +5,28 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Cashew Kernels',
   description: 'Premium cashew kernels in W180, W210, W240, W320, W450, splits and pieces. Exported from India with FSSAI, APEDA, and Halal certifications.',
+  keywords: [
+    'cashew kernels W320 exporter India',
+    'W180 cashew kernels bulk',
+    'W240 W450 cashew kernels India',
+    'cashew splits pieces India',
+    'JH LWP cashew kernels India',
+    'buy cashew kernels India wholesale',
+    'Halal cashew kernels India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/products/cashew-kernels' },
+  openGraph: {
+    title: 'Cashew Kernels Exporter India — W180 to W450 & Splits',
+    description: 'Premium cashew kernels in all internationally traded grades: W180, W210, W240, W320, W450, JH, LWP, splits and pieces. FSSAI, APEDA & Halal certified.',
+    url: 'https://www.shritikenterprises.com/products/cashew-kernels',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Premium Cashew Kernels — Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cashew Kernels Exporter India — W180 to W450 & Splits',
+    description: 'Premium cashew kernels in all grades. Exported from India with FSSAI, APEDA & Halal certification.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const grades = [

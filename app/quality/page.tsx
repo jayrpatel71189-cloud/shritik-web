@@ -5,6 +5,28 @@ import { ArrowRight, Award, CheckCircle, Shield, FlaskConical } from 'lucide-rea
 export const metadata: Metadata = {
   title: 'Quality & Certifications',
   description: 'Shritik Enterprises LLP holds FSSAI, APEDA, IEC, ISO, Halal, and Kosher certifications. Learn about our quality control process for cashews and dehydrated food exports.',
+  keywords: [
+    'FSSAI certified food exporter India',
+    'APEDA registered exporter India',
+    'ISO certified food company India',
+    'Halal certified food exporter',
+    'Kosher certified food India',
+    'food quality control India export',
+    'IEC certified exporter India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/quality' },
+  openGraph: {
+    title: 'Quality & Certifications — Shritik Enterprises LLP',
+    description: 'FSSAI, APEDA, IEC, ISO, Halal & Kosher certified Indian food exporter. Rigorous QC at every production stage for cashews and dehydrated food.',
+    url: 'https://www.shritikenterprises.com/quality',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Quality & Certifications — Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Quality & Certifications — Shritik Enterprises LLP',
+    description: 'FSSAI, APEDA, IEC, ISO, Halal & Kosher certified Indian food exporter.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const certifications = [

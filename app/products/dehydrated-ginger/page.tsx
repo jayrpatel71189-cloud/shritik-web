@@ -5,6 +5,27 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Dehydrated Ginger',
   description: 'Dehydrated ginger slices, flakes, granules, and powder retaining natural gingerol. Exported from India with FSSAI, Halal, and Kosher certification.',
+  keywords: [
+    'dehydrated ginger exporter India',
+    'dried ginger powder bulk India',
+    'ginger flakes granules supplier India',
+    'high gingerol ginger powder India',
+    'ginger for herbal tea supplier',
+    'Halal Kosher ginger powder India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/products/dehydrated-ginger' },
+  openGraph: {
+    title: 'Dehydrated Ginger Exporter India — Slices, Flakes & Powder',
+    description: 'Dehydrated ginger slices, flakes, granules, and powder with natural gingerol retained. FSSAI, APEDA, Halal & Kosher certified. Exported from India.',
+    url: 'https://www.shritikenterprises.com/products/dehydrated-ginger',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Dehydrated Ginger — Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dehydrated Ginger Exporter India — Slices, Flakes & Powder',
+    description: 'Natural gingerol-rich dehydrated ginger in all forms exported from India.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const products = [

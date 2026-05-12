@@ -5,6 +5,27 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Dehydrated Garlic',
   description: 'Dehydrated garlic flakes, granules, minced, and powder with high allicin content. Exported from India with FSSAI, Halal, and Kosher certification.',
+  keywords: [
+    'dehydrated garlic exporter India',
+    'dried garlic flakes wholesale India',
+    'garlic granules supplier India',
+    'garlic powder bulk exporter India',
+    'high allicin garlic powder India',
+    'Halal Kosher garlic powder India',
+  ],
+  alternates: { canonical: 'https://www.shritikenterprises.com/products/dehydrated-garlic' },
+  openGraph: {
+    title: 'Dehydrated Garlic Exporter India — Flakes, Granules & Powder',
+    description: 'Dehydrated garlic flakes, granules, minced, and powder with high allicin content. FSSAI, APEDA, Halal & Kosher certified. Exported from India.',
+    url: 'https://www.shritikenterprises.com/products/dehydrated-garlic',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Dehydrated Garlic — Shritik Enterprises LLP' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dehydrated Garlic Exporter India — Flakes, Granules & Powder',
+    description: 'High allicin dehydrated garlic flakes, granules, minced, and powder exported from India.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 const products = [
