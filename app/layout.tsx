@@ -52,7 +52,7 @@ export const metadata: Metadata = {
       "India-based manufacturer and exporter of certified cashew kernels, dehydrated onion, garlic, and ginger. FSSAI, APEDA, ISO, Halal & Kosher certified. Serving 30+ countries.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Shritik Enterprises LLP — Premium Indian Food Ingredients Exporter",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: "Shritik Enterprises LLP | Cashew & Dehydrated Food Exporter India",
     description:
       "India-based manufacturer and exporter of certified cashew kernels, dehydrated onion, garlic, and ginger. Serving 30+ countries.",
-    images: ["/og-image.jpg"],
+    images: ["/opengraph-image"],
   },
   alternates: {
     canonical: siteUrl,

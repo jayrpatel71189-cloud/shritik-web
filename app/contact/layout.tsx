@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     title: 'Contact Us — Shritik Enterprises LLP',
     description: 'Send an export inquiry or request product samples. We respond within 24 hours for all pricing and specification requests.',
     url: 'https://www.shritikenterprises.com/contact',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Contact Shritik Enterprises LLP' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Contact Shritik Enterprises LLP' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact Us — Shritik Enterprises LLP',
     description: 'Send an export inquiry. We respond within 24 hours.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
 };
 

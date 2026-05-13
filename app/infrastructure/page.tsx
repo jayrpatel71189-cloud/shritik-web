@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     title: 'Infrastructure — Shritik Enterprises LLP',
     description: 'Integrated cashew processing and dehydration plants in India. In-house manufacturing with on-site QC lab, controlled storage, and flexible packing lines.',
     url: 'https://www.shritikenterprises.com/infrastructure',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Manufacturing Infrastructure — Shritik Enterprises LLP' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Manufacturing Infrastructure — Shritik Enterprises LLP' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Infrastructure — Shritik Enterprises LLP',
     description: 'Integrated cashew processing and dehydration plants in India with on-site QC lab.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
 };
 

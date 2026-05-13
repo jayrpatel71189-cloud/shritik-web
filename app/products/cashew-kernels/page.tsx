@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     title: 'Cashew Kernels Exporter India — W180 to W450 & Splits',
     description: 'Premium cashew kernels in all internationally traded grades: W180, W210, W240, W320, W450, JH, LWP, splits and pieces. FSSAI, APEDA & Halal certified.',
     url: 'https://www.shritikenterprises.com/products/cashew-kernels',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Premium Cashew Kernels — Shritik Enterprises LLP' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Premium Cashew Kernels — Shritik Enterprises LLP' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Cashew Kernels Exporter India — W180 to W450 & Splits',
     description: 'Premium cashew kernels in all grades. Exported from India with FSSAI, APEDA & Halal certification.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
 };
 
