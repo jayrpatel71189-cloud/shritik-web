@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Award, CheckCircle, Shield, FlaskConical } from 'lucide-react';
+import ScrollReveal from '../components/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Quality & Certifications',
@@ -102,12 +103,12 @@ export default function QualityPage() {
     <>
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="breadcrumb">
+          <div className="breadcrumb ph-breadcrumb">
             <Link href="/">Home</Link><span>/</span>
             <span className="text-white">Quality & Certifications</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Quality & Certifications</h1>
-          <p className="text-green-100 text-lg max-w-2xl">Our quality systems are built around international food safety standards. Every product that leaves our facility is tested, documented, and certified.</p>
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4 ph-title">Quality & Certifications</h1>
+          <p className="text-green-100 text-lg max-w-2xl ph-subtitle">Our quality systems are built around international food safety standards. Every product that leaves our facility is tested, documented, and certified.</p>
         </div>
       </div>
 
@@ -115,21 +116,27 @@ export default function QualityPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Verified Compliance</p>
-            <h2 className="section-heading mb-4">Our Certifications</h2>
-            <div className="accent-line mx-auto" />
-            <p className="section-subheading mx-auto text-center">Recognised by food safety authorities and import regulators worldwide.</p>
+            <ScrollReveal animation="down">
+              <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Verified Compliance</p>
+            </ScrollReveal>
+            <ScrollReveal animation="up" delay={100}>
+              <h2 className="section-heading mb-4">Our Certifications</h2>
+              <div className="accent-line-anim sr-visible mx-auto" />
+              <p className="section-subheading mx-auto text-center">Recognised by food safety authorities and import regulators worldwide.</p>
+            </ScrollReveal>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certifications.map((cert) => (
-              <div key={cert.name} className={`border rounded-2xl p-6 ${cert.color}`}>
-                <div className={`inline-flex items-center gap-2 ${cert.badge} text-white rounded-full px-3 py-1.5 text-xs font-bold mb-4`}>
-                  <Award className="w-3.5 h-3.5" />
-                  {cert.name}
+            {certifications.map((cert, i) => (
+              <ScrollReveal key={cert.name} animation="flip" delay={i * 100}>
+                <div className={`border rounded-2xl p-6 ${cert.color} h-full cert-badge-glow animate-glow`}>
+                  <div className={`inline-flex items-center gap-2 ${cert.badge} text-white rounded-full px-3 py-1.5 text-xs font-bold mb-4`}>
+                    <Award className="w-3.5 h-3.5" />
+                    {cert.name}
+                  </div>
+                  <h3 className="font-semibold text-gray-900 text-sm mb-2">{cert.full}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{cert.desc}</p>
                 </div>
-                <h3 className="font-semibold text-gray-900 text-sm mb-2">{cert.full}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{cert.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -140,42 +147,50 @@ export default function QualityPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-[#1a472a] flex items-center justify-center">
-                  <FlaskConical className="w-5 h-5 text-white" />
+              <ScrollReveal animation="left">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-[#1a472a] flex items-center justify-center">
+                    <FlaskConical className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-[#d4a017] uppercase tracking-widest">Testing & Verification</p>
+                    <h2 className="font-serif text-2xl font-bold text-[#1a472a]">Quality Control Checklist</h2>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs font-semibold text-[#d4a017] uppercase tracking-widest">Testing & Verification</p>
-                  <h2 className="font-serif text-2xl font-bold text-[#1a472a]">Quality Control Checklist</h2>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm mb-6 leading-relaxed">Every batch undergoes a full quality verification cycle from raw material arrival to pre-shipment testing.</p>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">Every batch undergoes a full quality verification cycle from raw material arrival to pre-shipment testing.</p>
+              </ScrollReveal>
               <ul className="space-y-3">
-                {qcChecklist.map((item) => (
-                  <li key={item} className="flex items-start gap-3 bg-white border border-green-100 rounded-xl px-4 py-3">
-                    <CheckCircle className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700 text-sm">{item}</span>
-                  </li>
+                {qcChecklist.map((item, i) => (
+                  <ScrollReveal key={item} animation="left" delay={i * 70}>
+                    <li className="flex items-start gap-3 bg-white border border-green-100 rounded-xl px-4 py-3">
+                      <CheckCircle className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 text-sm">{item}</span>
+                    </li>
+                  </ScrollReveal>
                 ))}
               </ul>
             </div>
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-blue-700 flex items-center justify-center">
-                  <Shield className="w-5 h-5 text-white" />
+              <ScrollReveal animation="right">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-blue-700 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-blue-600 uppercase tracking-widest">Plant Compliance</p>
+                    <h2 className="font-serif text-2xl font-bold text-[#1a472a]">Food Safety Practices</h2>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs font-semibold text-blue-600 uppercase tracking-widest">Plant Compliance</p>
-                  <h2 className="font-serif text-2xl font-bold text-[#1a472a]">Food Safety Practices</h2>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm mb-6 leading-relaxed">Our facility operates under HACCP principles with documented food safety management procedures.</p>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">Our facility operates under HACCP principles with documented food safety management procedures.</p>
+              </ScrollReveal>
               <ul className="space-y-3">
-                {foodSafety.map((item) => (
-                  <li key={item} className="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
-                    <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700 text-sm">{item}</span>
-                  </li>
+                {foodSafety.map((item, i) => (
+                  <ScrollReveal key={item} animation="right" delay={i * 70}>
+                    <li className="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
+                      <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 text-sm">{item}</span>
+                    </li>
+                  </ScrollReveal>
                 ))}
               </ul>
             </div>
@@ -184,14 +199,16 @@ export default function QualityPage() {
       </section>
 
       {/* Documents CTA */}
-      <section className="py-16 bg-[#1a472a]">
+      <section className="py-16 dark-cta-animated">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Award className="w-10 h-10 text-[#d4a017] mx-auto mb-4" />
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">Request Certificates & Lab Reports</h2>
-          <p className="text-green-200 mb-6">We provide full documentation with every shipment — COA, lab test reports, certificates, and product spec sheets. Contact us to receive copies.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#d4a017] hover:bg-[#f0c040] text-[#1a472a] font-bold px-6 py-3 rounded-xl text-sm transition-all">
-            Request Documentation <ArrowRight className="w-4 h-4" />
-          </Link>
+          <ScrollReveal animation="blur-up">
+            <Award className="w-10 h-10 text-[#d4a017] mx-auto mb-4" />
+            <h2 className="font-serif text-3xl font-bold text-white mb-4">Request Certificates & Lab Reports</h2>
+            <p className="text-green-200 mb-6">We provide full documentation with every shipment — COA, lab test reports, certificates, and product spec sheets. Contact us to receive copies.</p>
+            <Link href="/contact" className="inline-flex items-center gap-2 bg-[#d4a017] hover:bg-[#f0c040] text-[#1a472a] font-bold px-6 py-3 rounded-xl text-sm transition-all">
+              Request Documentation <ArrowRight className="w-4 h-4" />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </>

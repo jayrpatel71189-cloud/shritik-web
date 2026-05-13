@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import ScrollReveal from '../components/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Products',
@@ -96,62 +97,75 @@ export default function ProductsPage() {
     <>
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="breadcrumb">
+          <div className="breadcrumb ph-breadcrumb">
             <Link href="/">Home</Link>
             <span>/</span>
             <span className="text-white">Products</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Our Products</h1>
-          <p className="text-green-100 text-lg max-w-2xl">Certified, export-ready food ingredients manufactured in-house. Available in customised forms, grades, and packaging.</p>
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4 ph-title">Our Products</h1>
+          <p className="text-green-100 text-lg max-w-2xl ph-subtitle">Certified, export-ready food ingredients manufactured in-house. Available in customised forms, grades, and packaging.</p>
         </div>
       </div>
 
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
           {products.map((p, i) => (
             <div key={p.name} className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-              <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
-                <div className={`inline-flex items-center gap-2 bg-gradient-to-r ${p.color} text-white rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-4`}>
-                  {p.emoji} {p.name}
+              <ScrollReveal animation={i % 2 === 0 ? 'left' : 'right'} delay={100}>
+                <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
+                  <div className={`inline-flex items-center gap-2 bg-gradient-to-r ${p.color} text-white rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-4`}>
+                    {p.emoji} {p.name}
+                  </div>
+                  <h2 className="font-serif text-3xl font-bold text-[#1a472a] mb-2">{p.tagline}</h2>
+                  <div className="accent-line-anim sr-visible" />
+                  <p className="text-gray-600 leading-relaxed mb-6">{p.desc}</p>
+                  <div className="mb-5">
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Available Grades / Forms</p>
+                    <div className="flex flex-wrap gap-2">
+                      {p.grades.map((g, gi) => (
+                        <span
+                          key={g}
+                          className={`px-3 py-1 rounded-full text-xs font-semibold grade-tag-anim ${p.tagClass}`}
+                          style={{ '--tag-delay': `${gi * 60}ms` } as React.CSSProperties}
+                        >
+                          {g}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Applications</p>
+                    <ul className="space-y-1.5">
+                      {p.applications.map((a) => (
+                        <li key={a} className="flex items-center gap-2 text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-[#2d6a4f] flex-shrink-0" />
+                          {a}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <Link href={p.href} className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${p.btnClass}`}>
+                    Full Product Details <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
-                <h2 className="font-serif text-3xl font-bold text-[#1a472a] mb-2">{p.tagline}</h2>
-                <div className="accent-line" />
-                <p className="text-gray-600 leading-relaxed mb-6">{p.desc}</p>
-                <div className="mb-5">
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Available Grades / Forms</p>
-                  <div className="flex flex-wrap gap-2">
-                    {p.grades.map((g) => (
-                      <span key={g} className={`px-3 py-1 rounded-full text-xs font-semibold ${p.tagClass}`}>{g}</span>
+              </ScrollReveal>
+
+              <ScrollReveal animation={i % 2 === 0 ? 'right' : 'left'} delay={200}>
+                <div className={`bg-gradient-to-br ${p.bg} border ${p.border} rounded-3xl p-10 flex flex-col items-center justify-center text-center ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  <div className="text-8xl mb-6 emoji-float">{p.emoji}</div>
+                  <h3 className="font-serif text-2xl font-bold text-[#1a472a] mb-3">{p.name}</h3>
+                  <div className="space-y-2 w-full max-w-xs">
+                    {p.forms.map((f, fi) => (
+                      <ScrollReveal key={f} animation="up" delay={fi * 100 + 300}>
+                        <div className="flex items-center gap-2 bg-white/70 rounded-lg px-4 py-2.5 text-sm font-medium text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-[#2d6a4f] flex-shrink-0" />
+                          {f}
+                        </div>
+                      </ScrollReveal>
                     ))}
                   </div>
                 </div>
-                <div className="mb-6">
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Applications</p>
-                  <ul className="space-y-1.5">
-                    {p.applications.map((a) => (
-                      <li key={a} className="flex items-center gap-2 text-sm text-gray-700">
-                        <CheckCircle className="w-4 h-4 text-[#2d6a4f] flex-shrink-0" />
-                        {a}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Link href={p.href} className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${p.btnClass}`}>
-                  Full Product Details <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-              <div className={`bg-gradient-to-br ${p.bg} border ${p.border} rounded-3xl p-10 flex flex-col items-center justify-center text-center ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <div className="text-8xl mb-6">{p.emoji}</div>
-                <h3 className="font-serif text-2xl font-bold text-[#1a472a] mb-3">{p.name}</h3>
-                <div className="space-y-2 w-full max-w-xs">
-                  {p.forms.map((f) => (
-                    <div key={f} className="flex items-center gap-2 bg-white/70 rounded-lg px-4 py-2.5 text-sm font-medium text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-[#2d6a4f] flex-shrink-0" />
-                      {f}
-                    </div>
-                  ))}
-                </div>
-              </div>
+              </ScrollReveal>
             </div>
           ))}
         </div>
@@ -160,11 +174,13 @@ export default function ProductsPage() {
       {/* CTA */}
       <section className="py-16 bg-[#f8fdf9] border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="section-heading mb-4">Need Customised Specifications?</h2>
-          <p className="section-subheading mx-auto text-center mb-8">We work with buyers to tailor moisture levels, granulation sizes, packaging formats, and certifications to your exact requirements.</p>
-          <Link href="/contact" className="btn-primary">
-            Discuss Your Requirements <ArrowRight className="w-4 h-4" />
-          </Link>
+          <ScrollReveal animation="blur-up">
+            <h2 className="section-heading mb-4">Need Customised Specifications?</h2>
+            <p className="section-subheading mx-auto text-center mb-8">We work with buyers to tailor moisture levels, granulation sizes, packaging formats, and certifications to your exact requirements.</p>
+            <Link href="/contact" className="btn-primary">
+              Discuss Your Requirements <ArrowRight className="w-4 h-4" />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </>

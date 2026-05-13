@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import ScrollReveal from '../../components/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Dehydrated Garlic',
@@ -54,16 +55,16 @@ export default function DehydratedGarlicPage() {
     <>
       <div className="page-hero" style={{ background: 'linear-gradient(135deg, #14532d 0%, #166534 60%, #16a34a 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="breadcrumb">
+          <div className="breadcrumb ph-breadcrumb">
             <Link href="/">Home</Link><span>/</span>
             <Link href="/products">Products</Link><span>/</span>
             <span className="text-white">Dehydrated Garlic</span>
           </div>
-          <div className="flex items-center gap-4 mb-4">
-            <span className="text-5xl">🧄</span>
+          <div className="flex items-center gap-4 mb-4 ph-title">
+            <span className="text-5xl emoji-float">🧄</span>
             <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white">Dehydrated Garlic</h1>
           </div>
-          <p className="text-green-100 text-lg max-w-2xl">High-allicin dehydrated garlic in flakes, granules, minced, and powder form — trusted by spice companies and food manufacturers worldwide.</p>
+          <p className="text-green-100 text-lg max-w-2xl ph-subtitle">High-allicin dehydrated garlic in flakes, granules, minced, and powder form — trusted by spice companies and food manufacturers worldwide.</p>
         </div>
       </div>
 
@@ -71,43 +72,48 @@ export default function DehydratedGarlicPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-sm font-semibold text-green-700 uppercase tracking-widest mb-3">Product Overview</p>
-              <h2 className="section-heading mb-4">Flavour-Rich Dehydrated Garlic</h2>
-              <div className="accent-line" />
-              <p className="text-gray-600 leading-relaxed mb-6">
-                We source fresh garlic from India&apos;s prime growing regions — Madhya Pradesh and Gujarat — and process it in our dedicated garlic dehydration line. Our controlled-temperature drying process ensures maximum allicin retention and a clean, sharp garlic flavour that food manufacturers trust.
-              </p>
-              <ul className="space-y-3">
-                {highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700 text-sm">{h}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-3xl p-10 text-center">
-              <div className="text-8xl mb-6">🧄</div>
-              <div className="grid grid-cols-2 gap-4 text-left">
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-gray-500 mb-1">Moisture</div>
-                  <div className="font-bold text-green-800">Max 6%</div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-gray-500 mb-1">Forms</div>
-                  <div className="font-bold text-green-800">4 Variants</div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-gray-500 mb-1">Shelf Life</div>
-                  <div className="font-bold text-green-800">18–24 Months</div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-gray-500 mb-1">Allicin</div>
-                  <div className="font-bold text-green-800">High Retention</div>
+            <ScrollReveal animation="left">
+              <div>
+                <ScrollReveal animation="down" delay={50}>
+                  <p className="text-sm font-semibold text-green-700 uppercase tracking-widest mb-3">Product Overview</p>
+                </ScrollReveal>
+                <h2 className="section-heading mb-4">Flavour-Rich Dehydrated Garlic</h2>
+                <div className="accent-line-anim sr-visible" />
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  We source fresh garlic from India&apos;s prime growing regions — Madhya Pradesh and Gujarat — and process it in our dedicated garlic dehydration line. Our controlled-temperature drying process ensures maximum allicin retention and a clean, sharp garlic flavour that food manufacturers trust.
+                </p>
+                <ul className="space-y-3">
+                  {highlights.map((h, i) => (
+                    <ScrollReveal key={h} animation="left" delay={i * 70 + 100}>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm">{h}</span>
+                      </li>
+                    </ScrollReveal>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="right" delay={150}>
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-3xl p-10 text-center">
+                <div className="text-8xl mb-6 emoji-float">🧄</div>
+                <div className="grid grid-cols-2 gap-4 text-left">
+                  {[
+                    { label: 'Moisture', value: 'Max 6%' },
+                    { label: 'Forms', value: '4 Variants' },
+                    { label: 'Shelf Life', value: '18–24 Months' },
+                    { label: 'Allicin', value: 'High Retention' },
+                  ].map((stat, i) => (
+                    <ScrollReveal key={stat.label} animation="pop" delay={i * 80 + 200}>
+                      <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="text-xs text-gray-500 mb-1">{stat.label}</div>
+                        <div className="font-bold text-green-800">{stat.value}</div>
+                      </div>
+                    </ScrollReveal>
+                  ))}
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -115,54 +121,64 @@ export default function DehydratedGarlicPage() {
       {/* Table */}
       <section className="py-16 bg-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="section-heading mb-3">Available Forms & Specifications</h2>
-          </div>
-          <div className="overflow-x-auto rounded-2xl shadow-card">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th style={{ background: '#14532d' }}>Form</th>
-                  <th style={{ background: '#14532d' }}>Particle Size</th>
-                  <th style={{ background: '#14532d' }}>Moisture</th>
-                  <th style={{ background: '#14532d' }}>Allicin Level</th>
-                  <th style={{ background: '#14532d' }}>Typical Uses</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((p) => (
-                  <tr key={p.form}>
-                    <td className="font-bold text-green-800">{p.form}</td>
-                    <td>{p.size}</td>
-                    <td>{p.moisture}</td>
-                    <td>{p.allicin}</td>
-                    <td className="text-gray-500">{p.uses}</td>
+          <ScrollReveal animation="up">
+            <div className="text-center mb-10">
+              <h2 className="section-heading mb-3">Available Forms & Specifications</h2>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal animation="zoom" delay={100}>
+            <div className="overflow-x-auto rounded-2xl shadow-card">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th style={{ background: '#14532d' }}>Form</th>
+                    <th style={{ background: '#14532d' }}>Particle Size</th>
+                    <th style={{ background: '#14532d' }}>Moisture</th>
+                    <th style={{ background: '#14532d' }}>Allicin Level</th>
+                    <th style={{ background: '#14532d' }}>Typical Uses</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {products.map((p) => (
+                    <tr key={p.form}>
+                      <td className="font-bold text-green-800">{p.form}</td>
+                      <td>{p.size}</td>
+                      <td>{p.moisture}</td>
+                      <td>{p.allicin}</td>
+                      <td className="text-gray-500">{p.uses}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Applications */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="section-heading mb-3">Applications</h2>
-          </div>
+          <ScrollReveal animation="up">
+            <div className="text-center mb-8">
+              <h2 className="section-heading mb-3">Applications</h2>
+            </div>
+          </ScrollReveal>
           <div className="grid md:grid-cols-2 gap-8">
             {applications.map((col, i) => (
-              <div key={i} className="bg-green-50 border border-green-100 rounded-2xl p-6">
-                <ul className="space-y-3">
-                  {col.map((a) => (
-                    <li key={a} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                      <span className="text-gray-700 text-sm">{a}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ScrollReveal key={i} animation={i === 0 ? 'left' : 'right'} delay={i * 100 + 100}>
+                <div className="bg-green-50 border border-green-100 rounded-2xl p-6">
+                  <ul className="space-y-3">
+                    {col.map((a, j) => (
+                      <ScrollReveal key={a} animation="up" delay={j * 80 + 200}>
+                        <li className="flex items-center gap-3">
+                          <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                          <span className="text-gray-700 text-sm">{a}</span>
+                        </li>
+                      </ScrollReveal>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -171,11 +187,13 @@ export default function DehydratedGarlicPage() {
       {/* CTA */}
       <section className="py-14 bg-[#14532d]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">Request Dehydrated Garlic Samples</h2>
-          <p className="text-green-200 mb-6">COA, microbiological reports, and samples available on request before order confirmation.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#d4a017] hover:bg-[#f0c040] text-[#14532d] font-bold px-6 py-3 rounded-xl text-sm transition-all">
-            Get in Touch <ArrowRight className="w-4 h-4" />
-          </Link>
+          <ScrollReveal animation="blur-up">
+            <h2 className="font-serif text-3xl font-bold text-white mb-4">Request Dehydrated Garlic Samples</h2>
+            <p className="text-green-200 mb-6">COA, microbiological reports, and samples available on request before order confirmation.</p>
+            <Link href="/contact" className="inline-flex items-center gap-2 bg-[#d4a017] hover:bg-[#f0c040] text-[#14532d] font-bold px-6 py-3 rounded-xl text-sm transition-all">
+              Get in Touch <ArrowRight className="w-4 h-4" />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </>

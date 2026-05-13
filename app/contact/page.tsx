@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Mail, Phone, MapPin, CheckCircle, Send, Loader2 } from 'lucide-react';
+import ScrollReveal from '../components/ScrollReveal';
 
 type FormData = {
   name: string;
@@ -69,12 +70,12 @@ export default function ContactPage() {
     <>
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="breadcrumb">
+          <div className="breadcrumb ph-breadcrumb">
             <Link href="/">Home</Link><span>/</span>
             <span className="text-white">Contact Us</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Contact Us</h1>
-          <p className="text-green-100 text-lg max-w-2xl">Send us your export inquiry, product requirement, or request for samples. We respond within 24 hours.</p>
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4 ph-title">Contact Us</h1>
+          <p className="text-green-100 text-lg max-w-2xl ph-subtitle">Send us your export inquiry, product requirement, or request for samples. We respond within 24 hours.</p>
         </div>
       </div>
 
@@ -82,10 +83,10 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Form */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 contact-form-anim">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center py-20 text-center">
-                  <div className="w-20 h-20 rounded-full bg-[#f0fdf4] flex items-center justify-center mb-6">
+                  <div className="w-20 h-20 rounded-full bg-[#f0fdf4] flex items-center justify-center mb-6 success-anim">
                     <CheckCircle className="w-10 h-10 text-[#2d6a4f]" />
                   </div>
                   <h2 className="font-serif text-3xl font-bold text-[#1a472a] mb-3">Inquiry Received!</h2>
@@ -157,57 +158,63 @@ export default function ContactPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
-              <div className="bg-[#f8fdf9] border border-green-100 rounded-2xl p-6">
-                <h3 className="font-semibold text-[#1a472a] mb-4">Contact Information</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Address</p>
-                      <p className="text-sm text-gray-600">India</p>
+            <div className="space-y-6 contact-sidebar-anim">
+              <ScrollReveal animation="right" delay={100}>
+                <div className="bg-[#f8fdf9] border border-green-100 rounded-2xl p-6">
+                  <h3 className="font-semibold text-[#1a472a] mb-4">Contact Information</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">Address</p>
+                        <p className="text-sm text-gray-600">India</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Mail className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Email</p>
-                      <a href="mailto:info@shritikenterprises.com" className="text-sm text-[#2d6a4f] hover:text-[#1a472a]">info@shritikenterprises.com</a>
+                    <div className="flex items-start gap-3">
+                      <Mail className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">Email</p>
+                        <a href="mailto:info@shritikenterprises.com" className="text-sm text-[#2d6a4f] hover:text-[#1a472a]">info@shritikenterprises.com</a>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Phone className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Phone / WhatsApp</p>
-                      <a href="tel:+91XXXXXXXXXX" className="text-sm text-[#2d6a4f] hover:text-[#1a472a]">+91-XXXXXXXXXX</a>
+                    <div className="flex items-start gap-3">
+                      <Phone className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">Phone / WhatsApp</p>
+                        <a href="tel:+91XXXXXXXXXX" className="text-sm text-[#2d6a4f] hover:text-[#1a472a]">+91-XXXXXXXXXX</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
 
-              <div className="bg-[#1a472a] rounded-2xl p-6 text-white">
-                <h3 className="font-semibold text-white mb-3">What to Include</h3>
-                <ul className="space-y-2 text-sm text-green-200">
-                  {[
-                    'Product name and grade (if known)',
-                    'Required quantity (MT per month/year)',
-                    'Destination country and port',
-                    'Packaging preference',
-                    'Certifications required (Halal, Kosher, etc.)',
-                    'Any custom specifications',
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#52b788] flex-shrink-0 mt-0.5" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ScrollReveal animation="right" delay={200}>
+                <div className="bg-[#1a472a] rounded-2xl p-6 text-white">
+                  <h3 className="font-semibold text-white mb-3">What to Include</h3>
+                  <ul className="space-y-2 text-sm text-green-200">
+                    {[
+                      'Product name and grade (if known)',
+                      'Required quantity (MT per month/year)',
+                      'Destination country and port',
+                      'Packaging preference',
+                      'Certifications required (Halal, Kosher, etc.)',
+                      'Any custom specifications',
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-[#52b788] flex-shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
 
-              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-                <h3 className="font-semibold text-amber-900 mb-2">Response Time</h3>
-                <p className="text-sm text-amber-800">We respond to all export inquiries within <strong>24 business hours</strong>. For urgent inquiries, include your WhatsApp number.</p>
-              </div>
+              <ScrollReveal animation="right" delay={300}>
+                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+                  <h3 className="font-semibold text-amber-900 mb-2">Response Time</h3>
+                  <p className="text-sm text-amber-800">We respond to all export inquiries within <strong>24 business hours</strong>. For urgent inquiries, include your WhatsApp number.</p>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, ReactNode } from 'react';
 
-type AnimationType = 'up' | 'left' | 'right' | 'pop' | 'zoom' | 'fade';
+type AnimationType = 'up' | 'left' | 'right' | 'pop' | 'zoom' | 'fade' | 'flip' | 'bubble' | 'blur-up' | 'down';
 
 interface ScrollRevealProps {
   children?: ReactNode;

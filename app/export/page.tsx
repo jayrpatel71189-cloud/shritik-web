@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, Globe, Ship, FileText, Package } from 'lucide-react';
+import ScrollReveal from '../components/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Export & Packaging',
@@ -67,12 +68,12 @@ export default function ExportPage() {
     <>
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="breadcrumb">
+          <div className="breadcrumb ph-breadcrumb">
             <Link href="/">Home</Link><span>/</span>
             <span className="text-white">Export & Packaging</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Export & Packaging</h1>
-          <p className="text-green-100 text-lg max-w-2xl">We ship to 30+ countries with full export documentation, compliance support, and flexible packaging options for every market.</p>
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4 ph-title">Export & Packaging</h1>
+          <p className="text-green-100 text-lg max-w-2xl ph-subtitle">We ship to 30+ countries with full export documentation, compliance support, and flexible packaging options for every market.</p>
         </div>
       </div>
 
@@ -80,19 +81,25 @@ export default function ExportPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Global Reach</p>
-            <h2 className="section-heading mb-4">Export Markets</h2>
-            <div className="accent-line mx-auto" />
-            <p className="section-subheading mx-auto text-center">Trusted buyers across the globe receive consistent, certified product from Shritik Enterprises LLP.</p>
+            <ScrollReveal animation="down">
+              <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Global Reach</p>
+            </ScrollReveal>
+            <ScrollReveal animation="up" delay={100}>
+              <h2 className="section-heading mb-4">Export Markets</h2>
+              <div className="accent-line-anim sr-visible mx-auto" />
+              <p className="section-subheading mx-auto text-center">Trusted buyers across the globe receive consistent, certified product from Shritik Enterprises LLP.</p>
+            </ScrollReveal>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {exportMarkets.map((m) => (
-              <div key={m.region} className="bg-[#f8fdf9] border border-green-100 rounded-2xl p-5">
-                <div className="text-3xl mb-3">{m.emoji}</div>
-                <h3 className="font-semibold text-[#1a472a] text-sm mb-1">{m.region}</h3>
-                <p className="text-xs text-gray-500 mb-2">{m.countries}</p>
-                <p className="text-xs text-[#2d6a4f] font-medium">{m.products}</p>
-              </div>
+            {exportMarkets.map((m, i) => (
+              <ScrollReveal key={m.region} animation="bubble" delay={i * 80}>
+                <div className="bg-[#f8fdf9] border border-green-100 rounded-2xl p-5 market-card h-full">
+                  <div className="text-3xl mb-3 market-emoji">{m.emoji}</div>
+                  <h3 className="font-semibold text-[#1a472a] text-sm mb-1">{m.region}</h3>
+                  <p className="text-xs text-gray-500 mb-2">{m.countries}</p>
+                  <p className="text-xs text-[#2d6a4f] font-medium">{m.products}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -102,17 +109,23 @@ export default function ExportPage() {
       <section className="py-20 bg-[#f8fdf9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">End-to-End Support</p>
-            <h2 className="section-heading mb-4">Export Services</h2>
-            <div className="accent-line mx-auto" />
+            <ScrollReveal animation="down">
+              <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">End-to-End Support</p>
+            </ScrollReveal>
+            <ScrollReveal animation="up" delay={100}>
+              <h2 className="section-heading mb-4">Export Services</h2>
+              <div className="accent-line-anim sr-visible mx-auto" />
+            </ScrollReveal>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {exportServices.map((s) => (
-              <div key={s.num} className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-                <div className="font-mono text-3xl font-bold text-[#d4a017] mb-3 leading-none">{s.num}</div>
-                <h3 className="font-semibold text-[#1a472a] mb-2 text-sm">{s.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
-              </div>
+            {exportServices.map((s, i) => (
+              <ScrollReveal key={s.num} animation="up" delay={i * 100}>
+                <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm service-card h-full">
+                  <div className="font-mono text-3xl font-bold text-[#d4a017] mb-3 leading-none service-num">{s.num}</div>
+                  <h3 className="font-semibold text-[#1a472a] mb-2 text-sm">{s.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -122,39 +135,51 @@ export default function ExportPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Flexible Options</p>
-            <h2 className="section-heading mb-4">Packaging Options</h2>
-            <div className="accent-line mx-auto" />
+            <ScrollReveal animation="down">
+              <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Flexible Options</p>
+            </ScrollReveal>
+            <ScrollReveal animation="up" delay={100}>
+              <h2 className="section-heading mb-4">Packaging Options</h2>
+              <div className="accent-line-anim sr-visible mx-auto" />
+            </ScrollReveal>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="text-3xl">🥜</div>
-                <h3 className="font-serif text-xl font-bold text-amber-900">Cashew Kernel Packaging</h3>
+            <ScrollReveal animation="left" delay={100}>
+              <div className="bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="text-3xl emoji-float">🥜</div>
+                  <h3 className="font-serif text-xl font-bold text-amber-900">Cashew Kernel Packaging</h3>
+                </div>
+                <ul className="space-y-3">
+                  {cashewPackaging.map((item, i) => (
+                    <ScrollReveal key={item} animation="left" delay={i * 80 + 200}>
+                      <li className="flex items-start gap-2 text-sm text-gray-700">
+                        <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    </ScrollReveal>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3">
-                {cashewPackaging.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
-                    <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="text-3xl">🌿</div>
-                <h3 className="font-serif text-xl font-bold text-green-900">Dehydrated Product Packaging</h3>
+            </ScrollReveal>
+            <ScrollReveal animation="right" delay={150}>
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="text-3xl emoji-float" style={{ animationDelay: '0.8s' }}>🌿</div>
+                  <h3 className="font-serif text-xl font-bold text-green-900">Dehydrated Product Packaging</h3>
+                </div>
+                <ul className="space-y-3">
+                  {dehydratedPackaging.map((item, i) => (
+                    <ScrollReveal key={item} animation="right" delay={i * 80 + 200}>
+                      <li className="flex items-start gap-2 text-sm text-gray-700">
+                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    </ScrollReveal>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3">
-                {dehydratedPackaging.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
-                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </ScrollReveal>
           </div>
 
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -163,28 +188,32 @@ export default function ExportPage() {
               { icon: FileText, title: 'Custom Labelling', desc: 'Nutrition labels, barcodes, and language variants for any market.' },
               { icon: Ship, title: 'FCL & LCL', desc: 'Full container loads and groupage shipments supported.' },
               { icon: Globe, title: 'Any Port', desc: 'Experience shipping to major ports across all export regions.' },
-            ].map((b) => (
-              <div key={b.title} className="bg-[#f8fdf9] border border-gray-100 rounded-xl p-5 text-center">
-                <div className="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center mx-auto mb-3">
-                  <b.icon className="w-5 h-5 text-[#2d6a4f]" />
+            ].map((b, i) => (
+              <ScrollReveal key={b.title} animation="pop" delay={i * 100}>
+                <div className="bg-[#f8fdf9] border border-gray-100 rounded-xl p-5 text-center h-full process-step">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center mx-auto mb-3">
+                    <b.icon className="w-5 h-5 text-[#2d6a4f]" />
+                  </div>
+                  <h4 className="font-semibold text-[#1a472a] text-sm mb-1">{b.title}</h4>
+                  <p className="text-xs text-gray-500">{b.desc}</p>
                 </div>
-                <h4 className="font-semibold text-[#1a472a] text-sm mb-1">{b.title}</h4>
-                <p className="text-xs text-gray-500">{b.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-[#1a472a]">
+      <section className="py-16 dark-cta-animated">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Ship className="w-10 h-10 text-[#d4a017] mx-auto mb-4" />
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">Ready to Start Importing from India?</h2>
-          <p className="text-green-200 mb-6">Share your product, quantity, destination, and packaging requirements — we&apos;ll send a detailed quote within 24 hours.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#d4a017] hover:bg-[#f0c040] text-[#1a472a] font-bold px-6 py-3 rounded-xl text-sm transition-all">
-            Send Export Inquiry <ArrowRight className="w-4 h-4" />
-          </Link>
+          <ScrollReveal animation="blur-up">
+            <Ship className="w-10 h-10 text-[#d4a017] mx-auto mb-4" />
+            <h2 className="font-serif text-3xl font-bold text-white mb-4">Ready to Start Importing from India?</h2>
+            <p className="text-green-200 mb-6">Share your product, quantity, destination, and packaging requirements — we&apos;ll send a detailed quote within 24 hours.</p>
+            <Link href="/contact" className="inline-flex items-center gap-2 bg-[#d4a017] hover:bg-[#f0c040] text-[#1a472a] font-bold px-6 py-3 rounded-xl text-sm transition-all">
+              Send Export Inquiry <ArrowRight className="w-4 h-4" />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import ScrollReveal from '../../components/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Dehydrated Ginger',
@@ -56,16 +57,16 @@ export default function DehydratedGingerPage() {
     <>
       <div className="page-hero" style={{ background: 'linear-gradient(135deg, #7c2d12 0%, #c2410c 60%, #ea580c 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="breadcrumb">
+          <div className="breadcrumb ph-breadcrumb">
             <Link href="/">Home</Link><span>/</span>
             <Link href="/products">Products</Link><span>/</span>
             <span className="text-white">Dehydrated Ginger</span>
           </div>
-          <div className="flex items-center gap-4 mb-4">
-            <span className="text-5xl">🫚</span>
+          <div className="flex items-center gap-4 mb-4 ph-title">
+            <span className="text-5xl emoji-float">🫚</span>
             <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white">Dehydrated Ginger</h1>
           </div>
-          <p className="text-orange-100 text-lg max-w-2xl">Natural gingerol retained through controlled dehydration. Available in slices, flakes, granules, and powder for food and nutraceutical manufacturers.</p>
+          <p className="text-orange-100 text-lg max-w-2xl ph-subtitle">Natural gingerol retained through controlled dehydration. Available in slices, flakes, granules, and powder for food and nutraceutical manufacturers.</p>
         </div>
       </div>
 
@@ -73,43 +74,48 @@ export default function DehydratedGingerPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-sm font-semibold text-orange-600 uppercase tracking-widest mb-3">Product Overview</p>
-              <h2 className="section-heading mb-4">Maximum Potency, Minimal Processing</h2>
-              <div className="accent-line" />
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Our ginger is sourced from prime growing regions — Kerala and Himachal Pradesh — where the gingerol content is naturally highest. We peel, slice, and dehydrate at carefully controlled temperatures to preserve the characteristic heat, flavour, and bioactive compounds that buyers demand.
-              </p>
-              <ul className="space-y-3">
-                {highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700 text-sm">{h}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200 rounded-3xl p-10 text-center">
-              <div className="text-8xl mb-6">🫚</div>
-              <div className="grid grid-cols-2 gap-4 text-left">
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-gray-500 mb-1">Moisture</div>
-                  <div className="font-bold text-orange-800">Max 8%</div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-gray-500 mb-1">Forms</div>
-                  <div className="font-bold text-orange-800">4 Variants</div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-gray-500 mb-1">Shelf Life</div>
-                  <div className="font-bold text-orange-800">18–24 Months</div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-gray-500 mb-1">Key Compound</div>
-                  <div className="font-bold text-orange-800">Gingerol (High)</div>
+            <ScrollReveal animation="left">
+              <div>
+                <ScrollReveal animation="down" delay={50}>
+                  <p className="text-sm font-semibold text-orange-600 uppercase tracking-widest mb-3">Product Overview</p>
+                </ScrollReveal>
+                <h2 className="section-heading mb-4">Maximum Potency, Minimal Processing</h2>
+                <div className="accent-line-anim sr-visible" />
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  Our ginger is sourced from prime growing regions — Kerala and Himachal Pradesh — where the gingerol content is naturally highest. We peel, slice, and dehydrate at carefully controlled temperatures to preserve the characteristic heat, flavour, and bioactive compounds that buyers demand.
+                </p>
+                <ul className="space-y-3">
+                  {highlights.map((h, i) => (
+                    <ScrollReveal key={h} animation="left" delay={i * 70 + 100}>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm">{h}</span>
+                      </li>
+                    </ScrollReveal>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="right" delay={150}>
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200 rounded-3xl p-10 text-center">
+                <div className="text-8xl mb-6 emoji-float">🫚</div>
+                <div className="grid grid-cols-2 gap-4 text-left">
+                  {[
+                    { label: 'Moisture', value: 'Max 8%' },
+                    { label: 'Forms', value: '4 Variants' },
+                    { label: 'Shelf Life', value: '18–24 Months' },
+                    { label: 'Key Compound', value: 'Gingerol (High)' },
+                  ].map((stat, i) => (
+                    <ScrollReveal key={stat.label} animation="pop" delay={i * 80 + 200}>
+                      <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="text-xs text-gray-500 mb-1">{stat.label}</div>
+                        <div className="font-bold text-orange-800">{stat.value}</div>
+                      </div>
+                    </ScrollReveal>
+                  ))}
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -117,49 +123,57 @@ export default function DehydratedGingerPage() {
       {/* Table */}
       <section className="py-16 bg-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="section-heading mb-3">Available Forms & Specifications</h2>
-          </div>
-          <div className="overflow-x-auto rounded-2xl shadow-card">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th style={{ background: '#7c2d12' }}>Form</th>
-                  <th style={{ background: '#7c2d12' }}>Particle Size</th>
-                  <th style={{ background: '#7c2d12' }}>Moisture</th>
-                  <th style={{ background: '#7c2d12' }}>Gingerol</th>
-                  <th style={{ background: '#7c2d12' }}>Typical Uses</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((p) => (
-                  <tr key={p.form}>
-                    <td className="font-bold text-orange-800">{p.form}</td>
-                    <td>{p.size}</td>
-                    <td>{p.moisture}</td>
-                    <td>{p.gingerol}</td>
-                    <td className="text-gray-500">{p.uses}</td>
+          <ScrollReveal animation="up">
+            <div className="text-center mb-10">
+              <h2 className="section-heading mb-3">Available Forms & Specifications</h2>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal animation="zoom" delay={100}>
+            <div className="overflow-x-auto rounded-2xl shadow-card">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th style={{ background: '#7c2d12' }}>Form</th>
+                    <th style={{ background: '#7c2d12' }}>Particle Size</th>
+                    <th style={{ background: '#7c2d12' }}>Moisture</th>
+                    <th style={{ background: '#7c2d12' }}>Gingerol</th>
+                    <th style={{ background: '#7c2d12' }}>Typical Uses</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {products.map((p) => (
+                    <tr key={p.form}>
+                      <td className="font-bold text-orange-800">{p.form}</td>
+                      <td>{p.size}</td>
+                      <td>{p.moisture}</td>
+                      <td>{p.gingerol}</td>
+                      <td className="text-gray-500">{p.uses}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Applications */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="section-heading mb-3">Applications</h2>
-          </div>
+          <ScrollReveal animation="up">
+            <div className="text-center mb-10">
+              <h2 className="section-heading mb-3">Applications</h2>
+            </div>
+          </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {applications.map((a) => (
-              <div key={a.name} className="bg-orange-50 border border-orange-100 rounded-2xl p-6">
-                <div className="text-3xl mb-3">{a.emoji}</div>
-                <h3 className="font-semibold text-orange-900 mb-2 text-sm">{a.name}</h3>
-                <p className="text-gray-600 text-xs leading-relaxed">{a.desc}</p>
-              </div>
+            {applications.map((a, i) => (
+              <ScrollReveal key={a.name} animation="bubble" delay={i * 100}>
+                <div className="bg-orange-50 border border-orange-100 rounded-2xl p-6 market-card h-full">
+                  <div className="text-3xl mb-3 market-emoji">{a.emoji}</div>
+                  <h3 className="font-semibold text-orange-900 mb-2 text-sm">{a.name}</h3>
+                  <p className="text-gray-600 text-xs leading-relaxed">{a.desc}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -168,11 +182,13 @@ export default function DehydratedGingerPage() {
       {/* CTA */}
       <section className="py-14 bg-[#7c2d12]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">Request Dehydrated Ginger Samples</h2>
-          <p className="text-orange-200 mb-6">Lab reports, COA, and product samples available before you place your first order.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#d4a017] hover:bg-[#f0c040] text-[#7c2d12] font-bold px-6 py-3 rounded-xl text-sm transition-all">
-            Get in Touch <ArrowRight className="w-4 h-4" />
-          </Link>
+          <ScrollReveal animation="blur-up">
+            <h2 className="font-serif text-3xl font-bold text-white mb-4">Request Dehydrated Ginger Samples</h2>
+            <p className="text-orange-200 mb-6">Lab reports, COA, and product samples available before you place your first order.</p>
+            <Link href="/contact" className="inline-flex items-center gap-2 bg-[#d4a017] hover:bg-[#f0c040] text-[#7c2d12] font-bold px-6 py-3 rounded-xl text-sm transition-all">
+              Get in Touch <ArrowRight className="w-4 h-4" />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </>
