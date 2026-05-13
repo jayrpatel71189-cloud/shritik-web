@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, Leaf, Phone } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone } from 'lucide-react';
 
 const productDropdown = [
   { name: 'Cashew Kernels', href: '/products/cashew-kernels' },
@@ -78,10 +79,15 @@ export default function Navbar() {
       {/* Main Nav */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 rounded-lg bg-primary-dark flex items-center justify-center shadow-md">
-              <Leaf size={20} className="text-accent" />
-            </div>
+          <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Image
+              src="/images/logo.png"
+              alt="Shritik Enterprises LLP"
+              width={52}
+              height={52}
+              className="rounded-full drop-shadow-md"
+              priority
+            />
             <div>
               <div className="font-serif font-bold text-primary-dark text-[15px] leading-tight">Shritik Enterprises</div>
               <div className="text-[10px] text-gray-500 font-medium tracking-wide leading-none">LLP &bull; MANUFACTURER &amp; EXPORTER</div>
