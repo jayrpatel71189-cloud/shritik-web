@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Leaf, Shield, Globe, Award, CheckCircle, ChevronRight, Star, Package, Truck, Users, Factory } from 'lucide-react';
 import HeroSlideshow from './components/HeroSlideshow';
+import ScrollReveal from './components/ScrollReveal';
+import FloatingLeaves from './components/FloatingLeaves';
 
 function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -106,6 +108,13 @@ const industries = [
   { emoji: '💊', name: 'Nutraceuticals' },
 ];
 
+const checkItems = [
+  'End-to-end in-house processing — no outsourcing',
+  'Flexible MOQ and private label capability',
+  'Consistent year-round supply with buffer stock',
+  'Dedicated export documentation support',
+];
+
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -158,12 +167,15 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      {/* Hero */}
+
+      {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-[#0d2b14]">
         {/* Dot pattern */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #52b788 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0d2b14] via-[#1a472a]/90 to-[#2d6a4f]/60" />
+        {/* Floating leaves (nature / organic theme) */}
+        <FloatingLeaves />
         {/* Bottom wave */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
@@ -174,21 +186,21 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-12 gap-8 xl:gap-14 items-center w-full">
 
-            {/* Left: text */}
+            {/* Left: text — staggered page-load animations */}
             <div className="lg:col-span-5">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm text-green-200 font-medium mb-6">
+              <div className="hero-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm text-green-200 font-medium mb-6">
                 <Leaf className="w-4 h-4 text-[#52b788]" />
-                India-based Manufacturer & Exporter
+                India-based Manufacturer &amp; Exporter
               </div>
-              <h1 className="font-serif text-5xl sm:text-6xl lg:text-5xl xl:text-[3.25rem] 2xl:text-6xl font-bold text-white leading-tight mb-6">
+              <h1 className="hero-title font-serif text-5xl sm:text-6xl lg:text-5xl xl:text-[3.25rem] 2xl:text-6xl font-bold text-white leading-tight mb-6">
                 Premium Food <br />
                 <span className="text-gold-gradient">Ingredients</span> for<br />
                 Global Markets
               </h1>
-              <p className="text-lg sm:text-xl text-green-100 leading-relaxed mb-10 max-w-xl">
+              <p className="hero-desc text-lg sm:text-xl text-green-100 leading-relaxed mb-10 max-w-xl">
                 Shritik Enterprises LLP manufactures and exports certified cashew kernels, dehydrated onion, garlic, and ginger to buyers across 30+ countries. Quality you can trust, supply you can rely on.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="hero-buttons flex flex-wrap gap-4">
                 <Link href="/products" className="btn-accent">
                   Explore Products <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -196,7 +208,7 @@ export default function HomePage() {
                   Request a Quote <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="hero-certs mt-10 flex flex-wrap gap-3">
                 {certifications.map((cert) => (
                   <span key={cert} className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-white backdrop-blur-sm">
                     {cert} Certified
@@ -205,9 +217,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: slideshow */}
+            {/* Right: slideshow — slides in from right */}
             <div className="lg:col-span-7">
-              <div className="relative h-[280px] sm:h-[360px] lg:h-[460px] xl:h-[520px]">
+              <div className="hero-slideshow relative h-[280px] sm:h-[360px] lg:h-[460px] xl:h-[520px]">
                 <HeroSlideshow />
               </div>
             </div>
@@ -216,30 +228,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* ── Stats ─────────────────────────────────────────────── */}
       <section className="bg-white py-14 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
+            {stats.map((stat, i) => (
+              <ScrollReveal key={stat.label} animation="pop" delay={i * 100} className="stat-card text-center">
                 <div className="font-serif text-4xl sm:text-5xl font-bold text-[#1a472a] mb-1">
                   <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="text-sm text-gray-500 font-medium">{stat.label}</div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Intro */}
+      {/* ── Intro / About ──────────────────────────────────────── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+
+            {/* Text — slides in from left */}
+            <ScrollReveal animation="left">
               <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Who We Are</p>
               <h2 className="section-heading mb-4">Trusted Source for Premium Indian Food Exports</h2>
-              <div className="accent-line" />
+              {/* Animated accent line */}
+              <ScrollReveal animation="fade" delay={200} className="accent-line-anim" />
               <p className="section-subheading mb-6">
                 Shritik Enterprises LLP is a certified manufacturer and exporter based in India, specialising in cashew kernels and dehydrated food ingredients for global food businesses.
               </p>
@@ -247,174 +262,203 @@ export default function HomePage() {
                 With our integrated processing facilities, we control quality from raw material sourcing through final export packaging. Our products meet international food safety standards and are trusted by importers, distributors, and food manufacturers worldwide.
               </p>
               <div className="space-y-3 mb-8">
-                {[
-                  'End-to-end in-house processing — no outsourcing',
-                  'Flexible MOQ and private label capability',
-                  'Consistent year-round supply with buffer stock',
-                  'Dedicated export documentation support',
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
+                {checkItems.map((item, i) => (
+                  <ScrollReveal key={item} animation="left" delay={i * 80} className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700 text-sm">{item}</span>
-                  </div>
+                  </ScrollReveal>
                 ))}
               </div>
               <Link href="/about" className="btn-primary">
                 Learn About Us <ArrowRight className="w-4 h-4" />
               </Link>
-            </div>
+            </ScrollReveal>
+
+            {/* Product mini-grid — pops in with stagger */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#f0fdf4] rounded-2xl p-6 border border-green-100">
-                <div className="text-3xl mb-3">🥜</div>
-                <h3 className="font-semibold text-[#1a472a] mb-2">Cashew Kernels</h3>
-                <p className="text-sm text-gray-600">W180 to W450 and all splits — the full range</p>
-              </div>
-              <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100 mt-6">
-                <div className="text-3xl mb-3">🧅</div>
-                <h3 className="font-semibold text-purple-900 mb-2">Dehydrated Onion</h3>
-                <p className="text-sm text-gray-600">White & red, all forms</p>
-              </div>
-              <div className="bg-orange-50 rounded-2xl p-6 border border-orange-100">
-                <div className="text-3xl mb-3">🧄</div>
-                <h3 className="font-semibold text-orange-900 mb-2">Dehydrated Garlic</h3>
-                <p className="text-sm text-gray-600">High allicin, all forms</p>
-              </div>
-              <div className="bg-amber-50 rounded-2xl p-6 border border-amber-100 mt-6">
-                <div className="text-3xl mb-3">🫚</div>
-                <h3 className="font-semibold text-amber-900 mb-2">Dehydrated Ginger</h3>
-                <p className="text-sm text-gray-600">Natural gingerol retained</p>
-              </div>
+              {[
+                { bg: 'bg-[#f0fdf4]', border: 'border-green-100',  icon: '🥜', title: 'Cashew Kernels',    sub: 'W180 to W450 and all splits — the full range', head: 'text-[#1a472a]', mt: '' },
+                { bg: 'bg-purple-50',  border: 'border-purple-100', icon: '🧅', title: 'Dehydrated Onion',  sub: 'White & red, all forms',                          head: 'text-purple-900', mt: 'mt-6' },
+                { bg: 'bg-orange-50',  border: 'border-orange-100', icon: '🧄', title: 'Dehydrated Garlic', sub: 'High allicin, all forms',                          head: 'text-orange-900', mt: '' },
+                { bg: 'bg-amber-50',   border: 'border-amber-100',  icon: '🫚', title: 'Dehydrated Ginger', sub: 'Natural gingerol retained',                        head: 'text-amber-900',  mt: 'mt-6' },
+              ].map((card, i) => (
+                <ScrollReveal key={card.title} animation="pop" delay={i * 100} className={card.mt}>
+                  <div className={`${card.bg} rounded-2xl p-6 border ${card.border} card-hover h-full`}>
+                    <div className="text-3xl mb-3">{card.icon}</div>
+                    <h3 className={`font-semibold ${card.head} mb-2`}>{card.title}</h3>
+                    <p className="text-sm text-gray-600">{card.sub}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Products */}
+      {/* ── Products ──────────────────────────────────────────── */}
       <section className="py-20 bg-[#f8fdf9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+
+          <ScrollReveal animation="up" className="text-center mb-14">
             <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Our Range</p>
             <h2 className="section-heading mb-4">Products We Export</h2>
             <div className="accent-line mx-auto" />
-            <p className="section-subheading mx-auto text-center">
+            <p className="section-subheading mx-auto text-center mt-2">
               All products are manufactured in-house, tested for international standards, and available in customised forms and packaging.
             </p>
-          </div>
+          </ScrollReveal>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <div key={product.name} className={`bg-gradient-to-b ${product.color} border ${product.border} rounded-2xl p-6 card-hover flex flex-col`}>
-                <div className="text-4xl mb-4">{product.icon}</div>
-                <h3 className="font-serif font-bold text-[#1a472a] text-lg mb-3">{product.name}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-1">{product.desc}</p>
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {product.tags.map((tag) => (
-                    <span key={tag} className={`px-2 py-0.5 rounded-full text-xs font-semibold ${product.badge}`}>{tag}</span>
-                  ))}
+            {products.map((product, i) => (
+              <ScrollReveal key={product.name} animation="up" delay={i * 100}>
+                <div className={`bg-gradient-to-b ${product.color} border ${product.border} rounded-2xl p-6 product-card-3d flex flex-col h-full`}>
+                  <div className="text-4xl mb-4">{product.icon}</div>
+                  <h3 className="font-serif font-bold text-[#1a472a] text-lg mb-3">{product.name}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-1">{product.desc}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {product.tags.map((tag) => (
+                      <span key={tag} className={`px-2 py-0.5 rounded-full text-xs font-semibold ${product.badge}`}>{tag}</span>
+                    ))}
+                  </div>
+                  <Link href={product.href} className="flex items-center gap-2 text-[#2d6a4f] font-semibold text-sm hover:gap-3 transition-all">
+                    View Details <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
-                <Link href={product.href} className="flex items-center gap-2 text-[#2d6a4f] font-semibold text-sm hover:gap-3 transition-all">
-                  View Details <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
-          <div className="text-center mt-10">
+
+          <ScrollReveal animation="up" delay={200} className="text-center mt-10">
             <Link href="/products" className="btn-primary">
               All Products <ArrowRight className="w-4 h-4" />
             </Link>
-          </div>
+          </ScrollReveal>
+
         </div>
       </section>
 
-      {/* Why Us */}
+      {/* ── Why Us ────────────────────────────────────────────── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+
+          <ScrollReveal animation="up" className="text-center mb-14">
             <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Why Shritik</p>
             <h2 className="section-heading mb-4">Why Buyers Choose Us</h2>
             <div className="accent-line mx-auto" />
-            <p className="section-subheading mx-auto text-center">
+            <p className="section-subheading mx-auto text-center mt-2">
               From manufacturing to shipment, we deliver more than products — we deliver confidence.
             </p>
-          </div>
+          </ScrollReveal>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyUs.map((item) => (
-              <div key={item.title} className="p-6 rounded-2xl border border-gray-100 bg-white shadow-card hover:shadow-card-hover transition-all hover:-translate-y-1">
-                <div className="w-12 h-12 rounded-xl bg-[#f0fdf4] flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-[#2d6a4f]" />
+            {whyUs.map((item, i) => (
+              <ScrollReveal key={item.title} animation="up" delay={i * 80}>
+                <div className="why-card p-6 rounded-2xl border border-gray-100 bg-white shadow-card hover:shadow-card-hover transition-all hover:-translate-y-1 h-full">
+                  <div className="why-icon w-12 h-12 rounded-xl bg-[#f0fdf4] flex items-center justify-center mb-4">
+                    <item.icon className="w-6 h-6 text-[#2d6a4f]" />
+                  </div>
+                  <h3 className="font-semibold text-[#1a472a] text-base mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
                 </div>
-                <h3 className="font-semibold text-[#1a472a] text-base mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* Certifications strip */}
+      {/* ── Certifications strip ──────────────────────────────── */}
       <section className="py-16 bg-[#1a472a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
+
+          <ScrollReveal animation="up" className="text-center mb-10">
             <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-2">Verified Standards</p>
             <h2 className="font-serif text-3xl font-bold text-white mb-3">Internationally Certified</h2>
-            <p className="text-green-200 max-w-xl mx-auto text-sm">Our certifications reflect our commitment to food safety, traceability, and compliance with global import requirements.</p>
-          </div>
+            <p className="text-green-200 max-w-xl mx-auto text-sm">
+              Our certifications reflect our commitment to food safety, traceability, and compliance with global import requirements.
+            </p>
+          </ScrollReveal>
+
           <div className="flex flex-wrap justify-center gap-4">
-            {certifications.map((cert) => (
-              <div key={cert} className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-xl px-5 py-3">
-                <Award className="w-4 h-4 text-[#d4a017]" />
-                <span className="text-white font-semibold text-sm">{cert}</span>
-              </div>
+            {certifications.map((cert, i) => (
+              <ScrollReveal key={cert} animation="pop" delay={i * 80}>
+                <div className="cert-badge-glow animate-glow flex items-center gap-2 bg-white/10 border border-white/20 rounded-xl px-5 py-3">
+                  <Award className="w-4 h-4 text-[#d4a017]" />
+                  <span className="text-white font-semibold text-sm">{cert}</span>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
-          <div className="text-center mt-8">
+
+          <ScrollReveal animation="fade" delay={400} className="text-center mt-8">
             <Link href="/quality" className="inline-flex items-center gap-2 text-[#d4a017] hover:text-[#f0c040] font-semibold text-sm transition-colors">
               View All Certifications <ArrowRight className="w-4 h-4" />
             </Link>
-          </div>
+          </ScrollReveal>
+
         </div>
       </section>
 
-      {/* Industries */}
+      {/* ── Industries ────────────────────────────────────────── */}
       <section className="py-20 bg-[#f8fdf9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+
+          <ScrollReveal animation="up" className="text-center mb-14">
             <p className="text-sm font-semibold text-[#d4a017] uppercase tracking-widest mb-3">Applications</p>
             <h2 className="section-heading mb-4">Industries We Serve</h2>
             <div className="accent-line mx-auto" />
-          </div>
+          </ScrollReveal>
+
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {industries.map((item) => (
-              <div key={item.name} className="bg-white rounded-2xl border border-gray-100 p-5 text-center shadow-sm hover:shadow-card transition-all hover:-translate-y-0.5">
-                <div className="text-3xl mb-3">{item.emoji}</div>
-                <p className="text-sm font-semibold text-[#1a472a]">{item.name}</p>
-              </div>
+            {industries.map((item, i) => (
+              <ScrollReveal key={item.name} animation="pop" delay={i * 60}>
+                <div className="industry-item bg-white rounded-2xl border border-gray-100 p-5 text-center shadow-sm h-full">
+                  <div className="industry-emoji text-3xl mb-3">{item.emoji}</div>
+                  <p className="text-sm font-semibold text-[#1a472a]">{item.name}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-[#1a472a] to-[#2d6a4f] relative overflow-hidden">
+      {/* ── CTA ───────────────────────────────────────────────── */}
+      <section className="cta-animated-bg py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #52b788 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-sm text-green-200 font-medium mb-6">
-            <Star className="w-4 h-4 text-[#d4a017]" fill="currentColor" />
-            Start Your Export Partnership
-          </div>
-          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-5">
-            Ready to Source Premium<br />Indian Food Ingredients?
-          </h2>
-          <p className="text-green-100 text-lg mb-10 max-w-2xl mx-auto">
-            Tell us your product, quantity, and destination. We&apos;ll respond with pricing, specs, and samples within 24 hours.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="btn-accent">
-              Send Export Inquiry <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link href="/products" className="btn-outline">
-              Browse Products <ChevronRight className="w-4 h-4" />
-            </Link>
-          </div>
+
+          <ScrollReveal animation="fade">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-sm text-green-200 font-medium mb-6">
+              <Star className="w-4 h-4 text-[#d4a017]" fill="currentColor" />
+              Start Your Export Partnership
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal animation="up" delay={100}>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-5">
+              Ready to Source Premium<br />Indian Food Ingredients?
+            </h2>
+          </ScrollReveal>
+
+          <ScrollReveal animation="up" delay={220}>
+            <p className="text-green-100 text-lg mb-10 max-w-2xl mx-auto">
+              Tell us your product, quantity, and destination. We&apos;ll respond with pricing, specs, and samples within 24 hours.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal animation="up" delay={340}>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/contact" className="btn-accent">
+                Send Export Inquiry <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/products" className="btn-outline">
+                Browse Products <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
+
         </div>
       </section>
     </>
