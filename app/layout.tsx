@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollProgress from "./components/ScrollProgress";
 import { Analytics } from "@vercel/analytics/next";
 
 const siteUrl = "https://www.shritikenterprises.com";
@@ -77,6 +78,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth">
       <body className="min-h-full flex flex-col bg-white text-gray-900 antialiased">
+        <ScrollProgress />
         <Navbar />
         <main className="flex-1 pt-16 lg:pt-20">{children}</main>
         <Footer />
