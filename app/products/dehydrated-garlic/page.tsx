@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     title: 'Dehydrated Garlic Exporter India — Flakes, Granules & Powder',
     description: 'Dehydrated garlic flakes, granules, minced, and powder with high allicin content. FSSAI, APEDA, Halal & Kosher certified. Exported from India.',
     url: 'https://www.shritikenterprises.com/products/dehydrated-garlic',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Dehydrated Garlic — Shritik Enterprises LLP' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Dehydrated Garlic — Shritik Enterprises LLP' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Dehydrated Garlic Exporter India — Flakes, Granules & Powder',
     description: 'High allicin dehydrated garlic flakes, granules, minced, and powder exported from India.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
 };
 

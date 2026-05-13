@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     title: 'Private Label Food Manufacturing — Shritik Enterprises LLP',
     description: 'Custom private label cashew kernels, dehydrated onion, garlic, and ginger from India. Your brand, our manufacturing expertise.',
     url: 'https://www.shritikenterprises.com/private-label',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Private Label Food Manufacturing — Shritik Enterprises LLP' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Private Label Food Manufacturing — Shritik Enterprises LLP' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Private Label Food Manufacturing — Shritik Enterprises LLP',
     description: 'Custom private label cashew kernels and dehydrated food ingredients from India.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
 };
 

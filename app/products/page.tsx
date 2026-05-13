@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     title: 'Products — Shritik Enterprises LLP',
     description: 'Cashew kernels (W180–W450), dehydrated onion, garlic, and ginger. All products manufactured in-house, certified, and available for global export.',
     url: 'https://www.shritikenterprises.com/products',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Food Products — Shritik Enterprises LLP' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Food Products — Shritik Enterprises LLP' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Products — Shritik Enterprises LLP',
     description: 'Cashew kernels, dehydrated onion, garlic, and ginger manufactured and exported from India.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
 };
 

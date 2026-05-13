@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     title: 'Dehydrated Ginger Exporter India — Slices, Flakes & Powder',
     description: 'Dehydrated ginger slices, flakes, granules, and powder with natural gingerol retained. FSSAI, APEDA, Halal & Kosher certified. Exported from India.',
     url: 'https://www.shritikenterprises.com/products/dehydrated-ginger',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Dehydrated Ginger — Shritik Enterprises LLP' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Dehydrated Ginger — Shritik Enterprises LLP' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Dehydrated Ginger Exporter India — Slices, Flakes & Powder',
     description: 'Natural gingerol-rich dehydrated ginger in all forms exported from India.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
 };
 

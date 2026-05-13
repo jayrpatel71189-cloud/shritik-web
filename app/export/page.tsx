@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     title: 'Export & Packaging — Shritik Enterprises LLP',
     description: 'Exporting cashew kernels and dehydrated food ingredients to 30+ countries. Full export documentation, flexible packaging, and logistics support.',
     url: 'https://www.shritikenterprises.com/export',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Export & Packaging — Shritik Enterprises LLP' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Export & Packaging — Shritik Enterprises LLP' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Export & Packaging — Shritik Enterprises LLP',
     description: 'Exporting cashew kernels and dehydrated food ingredients to 30+ countries.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
 };
 
