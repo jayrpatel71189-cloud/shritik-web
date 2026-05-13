@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Leaf, MapPin, Mail, Phone, Globe, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { MapPin, Mail, Phone, Globe, ArrowRight } from 'lucide-react';
 
 const quickLinks = [
   { name: 'Home', href: '/' },
@@ -29,13 +30,17 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#2d6a4f] to-[#52b788] flex items-center justify-center">
-                <Leaf className="w-5 h-5 text-white" />
-              </div>
+            <Link href="/" className="flex items-center gap-3 mb-5">
+              <Image
+                src="/images/logo.png"
+                alt="Shritik Enterprises LLP"
+                width={64}
+                height={64}
+                className="rounded-full bg-white/10 p-0.5"
+              />
               <div>
                 <div className="font-bold text-white text-[15px]" style={{ fontFamily: "'Playfair Display', serif" }}>Shritik Enterprises</div>
-                <div className="text-[10px] text-[#d4a017] font-semibold tracking-widest">LLP</div>
+                <div className="text-[10px] text-[#d4a017] font-semibold tracking-widest">LLP &bull; MANUFACTURER &amp; EXPORTER</div>
               </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
