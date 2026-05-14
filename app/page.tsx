@@ -277,14 +277,18 @@ export default function HomePage() {
             {/* Product mini-grid — pops in with stagger */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { bg: 'bg-[#f0fdf4]', border: 'border-green-100',  icon: '🥜', title: 'Cashew Kernels',    sub: 'W180 to W450 and all splits — the full range', head: 'text-[#1a472a]', mt: '' },
+                { bg: 'bg-[#f0fdf4]', border: 'border-green-100',  icon: '/images/cashew-icon.svg', title: 'Cashew Kernels',    sub: 'W180 to W450 and all splits — the full range', head: 'text-[#1a472a]', mt: '' },
                 { bg: 'bg-purple-50',  border: 'border-purple-100', icon: '🧅', title: 'Dehydrated Onion',  sub: 'White & red, all forms',                          head: 'text-purple-900', mt: 'mt-6' },
                 { bg: 'bg-orange-50',  border: 'border-orange-100', icon: '🧄', title: 'Dehydrated Garlic', sub: 'High allicin, all forms',                          head: 'text-orange-900', mt: '' },
                 { bg: 'bg-amber-50',   border: 'border-amber-100',  icon: '🫚', title: 'Dehydrated Ginger', sub: 'Natural gingerol retained',                        head: 'text-amber-900',  mt: 'mt-6' },
               ].map((card, i) => (
                 <ScrollReveal key={card.title} animation="pop" delay={i * 100} className={card.mt}>
                   <div className={`${card.bg} rounded-2xl p-6 border ${card.border} card-hover h-full`}>
-                    <div className="text-3xl mb-3">{card.icon}</div>
+                    <div className="text-3xl mb-3">
+                      {card.icon.startsWith('/') ? (
+                        <img src={card.icon} alt={card.title} className="w-9 h-9" />
+                      ) : card.icon}
+                    </div>
                     <h3 className={`font-semibold ${card.head} mb-2`}>{card.title}</h3>
                     <p className="text-sm text-gray-600">{card.sub}</p>
                   </div>

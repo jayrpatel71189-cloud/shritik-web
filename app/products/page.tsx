@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const products = [
   {
-    emoji: '/images/cashew.svg',
+    emoji: '/images/cashew-icon.svg',
     name: 'Cashew Kernels',
     href: '/products/cashew-kernels',
     tagline: 'Premium grades for every application',
@@ -124,7 +124,8 @@ export default function ProductsPage() {
                 {/* Content */}
                 <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className={`inline-flex items-center gap-2 bg-gradient-to-r ${p.color} text-white rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-4`}>
-                    {p.emoji} {p.name}
+                    {p.emoji.startsWith('/') ? <img src={p.emoji} alt="" className="w-5 h-5" /> : p.emoji}
+                    {p.name}
                   </div>
                   <h2 className="font-serif text-3xl font-bold text-[#1a472a] mb-2">{p.tagline}</h2>
                   <div className="accent-line-anim sr-visible" />
