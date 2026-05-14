@@ -76,7 +76,7 @@ export default function CashewKernelsPage() {
             <span className="text-white">Cashew Kernels</span>
           </div>
           <div className="flex items-center gap-4 mb-4">
-            <span className="text-5xl">🥜</span>
+            <img src="/images/cashew.svg" alt="Cashew" className="w-14 h-14" />
             <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white">Cashew Kernels</h1>
           </div>
           <p className="text-amber-100 text-lg max-w-2xl">Premium quality cashew kernels in all internationally traded grades — whole, halves, splits, and pieces. Sourced and processed in India.</p>
@@ -104,7 +104,7 @@ export default function CashewKernelsPage() {
               </ul>
             </div>
             <div className="bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 rounded-3xl p-10 text-center">
-              <div className="text-8xl mb-6">🥜</div>
+              <div className="mb-6"><img src="/images/cashew.svg" alt="Cashew Kernels" className="w-28 h-28 mx-auto" /></div>
               <div className="grid grid-cols-2 gap-4 text-left">
                 <div className="bg-white rounded-xl p-4 shadow-sm">
                   <div className="text-xs text-gray-500 mb-1">Moisture</div>
