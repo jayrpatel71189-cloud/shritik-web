@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const products = [
   {
-    emoji: '🥜',
+    emoji: '/images/cashew.svg',
     name: 'Cashew Kernels',
     href: '/products/cashew-kernels',
     tagline: 'Premium grades for every application',
@@ -167,7 +167,11 @@ export default function ProductsPage() {
 
                 {/* Visual panel */}
                 <div className={`bg-gradient-to-br ${p.bg} border ${p.border} rounded-3xl p-10 flex flex-col items-center justify-center text-center card-shimmer facility-card ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <div className={`text-8xl mb-6 ${p.floatClass}`}>{p.emoji}</div>
+                  <div className={`mb-6 ${p.floatClass}`}>
+                    {p.emoji.startsWith('/')
+                      ? <img src={p.emoji} alt={p.name} className="w-28 h-28 mx-auto" />
+                      : <span className="text-8xl">{p.emoji}</span>}
+                  </div>
                   <h3 className="font-serif text-2xl font-bold text-[#1a472a] mb-3">{p.name}</h3>
                   <div className="space-y-2 w-full max-w-xs">
                     {p.forms.map((f) => (

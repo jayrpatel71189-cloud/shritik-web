@@ -48,7 +48,7 @@ const products = [
     name: 'Cashew Kernels',
     desc: 'Premium W180 to W450 grades and splits — whole, broken, and splits for snacking, confectionery, and food processing.',
     href: '/products/cashew-kernels',
-    icon: '🥜',
+    icon: '/images/cashew.svg',
     tags: ['W180', 'W240', 'W320', 'W450', 'Splits'],
     color: 'from-amber-50 to-yellow-50',
     border: 'border-amber-200',
@@ -313,7 +313,11 @@ export default function HomePage() {
             {products.map((product, i) => (
               <ScrollReveal key={product.name} animation="up" delay={i * 100}>
                 <div className={`bg-gradient-to-b ${product.color} border ${product.border} rounded-2xl p-6 product-card-3d flex flex-col h-full`}>
-                  <div className="text-4xl mb-4">{product.icon}</div>
+                  <div className="text-4xl mb-4">
+                    {product.icon.startsWith('/')
+                      ? <img src={product.icon} alt={product.name} className="w-10 h-10" />
+                      : product.icon}
+                  </div>
                   <h3 className="font-serif font-bold text-[#1a472a] text-lg mb-3">{product.name}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-1">{product.desc}</p>
                   <div className="flex flex-wrap gap-1.5 mb-5">

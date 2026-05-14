@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <radialGradient id="cashewBody" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#F5DFA0"/>
+      <stop offset="60%" stop-color="#D4A040"/>
+      <stop offset="100%" stop-color="#A07018"/>
+    </radialGradient>
+    <radialGradient id="cashewShine" cx="35%" cy="25%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Main cashew kernel body: curved kidney/crescent shape -->
+  <path d="M 22 82
+           C 10 70, 8 48, 18 32
+           C 28 16, 52 10, 70 20
+           C 88 30, 98 52, 90 70
+           C 82 86, 64 94, 48 90
+           C 34 86, 26 88, 22 82 Z"
+        fill="url(#cashewBody)"
+        stroke="#8B5E10"
+        stroke-width="2.5"/>
+
+  <!-- Shine overlay -->
+  <path d="M 22 82
+           C 10 70, 8 48, 18 32
+           C 28 16, 52 10, 70 20
+           C 88 30, 98 52, 90 70
+           L 78 62
+           C 84 48, 76 30, 62 22
+           C 46 14, 26 20, 20 36
+           Z"
+        fill="url(#cashewShine)"/>
+
+  <!-- Inner concave curve — characteristic cashew feature -->
+  <path d="M 28 78 C 16 62, 16 40, 26 28"
+        fill="none"
+        stroke="#7A4C08"
+        stroke-width="3"
+        stroke-linecap="round"
+        opacity="0.4"/>
+
+  <!-- Surface highlight ridge -->
+  <path d="M 44 14 C 64 8, 84 24, 92 50"
+        fill="none"
+        stroke="#FAEAC0"
+        stroke-width="4"
+        stroke-linecap="round"
+        opacity="0.55"/>
+
+  <!-- Subtle mid-surface crease -->
+  <path d="M 36 18 C 54 12, 76 26, 84 50"
+        fill="none"
+        stroke="#E0B840"
+        stroke-width="2"
+        stroke-linecap="round"
+        opacity="0.35"/>
+
+  <!-- Tip shadow at the narrow end -->
+  <path d="M 68 20 C 74 26, 76 34, 74 40"
+        fill="none"
+        stroke="#6B4408"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        opacity="0.45"/>
+</svg>
