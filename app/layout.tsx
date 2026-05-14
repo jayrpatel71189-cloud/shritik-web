@@ -69,6 +69,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  icons: {
+    icon: [
+      { url: "/logo.ico", type: "image/x-icon" },
+    ],
+    shortcut: "/logo.ico",
+    apple: "/logo.ico",
+  },
   category: "food",
 };
 

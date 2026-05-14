@@ -350,21 +350,298 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .stat-card:hover { transform: translateY(-4px); }
 
 /* ============================================================
+   PAGE HERO ANIMATED (inner pages — animated gradient bg)
+   ============================================================ */
+
+@keyframes pageHeroGradient {
+  0%,100% { background-position:   0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.page-hero-animated {
+  background: linear-gradient(135deg, #0d2b14, #1a472a, #2d6a4f, #1a5c3a, #0d2b14);
+  background-size: 300% 300%;
+  animation: pageHeroGradient 18s ease infinite;
+  padding: 80px 0 60px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Staggered hero-content entry (similar to landing-page hero-*) */
+@keyframes phBadgeIn {
+  from { opacity: 0; transform: translateY(-18px); filter: blur(3px); }
+  to   { opacity: 1; transform: translateY(0);      filter: blur(0); }
+}
+@keyframes phTitleIn {
+  from { opacity: 0; transform: translateY(36px); filter: blur(5px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+@keyframes phDescIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ph-breadcrumb { animation: phBadgeIn 0.55s cubic-bezier(0.22,0.61,0.36,1) 0.08s both; }
+.ph-title      { animation: phTitleIn 0.80s cubic-bezier(0.22,0.61,0.36,1) 0.22s both; }
+.ph-desc       { animation: phDescIn  0.70s ease-out                        0.42s both; }
+
+/* ============================================================
+   FLOATING ICON / EMOJI ANIMATION
+   ============================================================ */
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0px)  rotate(0deg);  }
+  33%       { transform: translateY(-9px) rotate(4deg);  }
+  66%       { transform: translateY(-4px) rotate(-3deg); }
+}
+
+.float-icon         { display: inline-block; animation: floatIcon 4.0s ease-in-out infinite; }
+.float-icon-slow    { display: inline-block; animation: floatIcon 6.0s ease-in-out infinite; }
+.float-icon-delayed { display: inline-block; animation: floatIcon 5.0s ease-in-out 1.5s infinite; }
+
+/* ============================================================
+   PAGE HERO DECORATIVE PARTICLES
+   ============================================================ */
+
+.ph-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+/* ============================================================
+   TIMELINE ANIMATIONS (about page)
+   ============================================================ */
+
+@keyframes timelinePulse {
+  0%   { box-shadow: 0 0 0   0px rgba(45,106,79,0.6); }
+  70%  { box-shadow: 0 0 0  12px rgba(45,106,79,0);   }
+  100% { box-shadow: 0 0 0   0px rgba(45,106,79,0);   }
+}
+
+.timeline-dot-pulse { animation: timelinePulse 2.2s ease-out infinite; }
+
+.timeline-connector {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.7s ease-out;
+  will-change: transform;
+}
+.timeline-connector.sr-visible { transform: scaleY(1); }
+
+/* ============================================================
+   CARD SHIMMER SWEEP ON HOVER
+   ============================================================ */
+
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.card-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.13) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+  pointer-events: none;
+}
+.card-shimmer:hover::after { transform: translateX(110%); }
+
+/* ============================================================
+   PROCESS / STEP CARDS
+   ============================================================ */
+
+.process-card {
+  transition: transform 0.30s ease, box-shadow 0.30s ease;
+}
+.process-card:hover {
+  transform: translateY(-9px) scale(1.01);
+  box-shadow: 0 22px 44px rgba(26,71,42,0.16);
+}
+
+/* ============================================================
+   EXPORT MARKET CARD HOVER
+   ============================================================ */
+
+.market-card {
+  transition: transform 0.30s ease, box-shadow 0.30s ease, border-color 0.30s ease;
+}
+.market-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 36px rgba(26,71,42,0.14);
+  border-color: #52b788;
+}
+
+/* ============================================================
+   CERTIFICATION CARD HOVER (quality page)
+   ============================================================ */
+
+.cert-card {
+  transition: transform 0.30s ease, box-shadow 0.30s ease;
+}
+.cert-card:hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+}
+
+/* ============================================================
+   TAG POP ANIMATION (product grades / tags)
+   ============================================================ */
+
+@keyframes tagPop {
+  0%   { opacity: 0; transform: scale(0.55); }
+  65%  { transform: scale(1.10); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.tag-pop { animation: tagPop 0.38s cubic-bezier(0.175,0.885,0.32,1.275) both; }
+
+/* ============================================================
+   SUCCESS ANIMATION (contact form submitted)
+   ============================================================ */
+
+@keyframes successPop {
+  0%   { opacity: 0; transform: scale(0); }
+  55%  { transform: scale(1.20); }
+  80%  { transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes successRing {
+  0%   { box-shadow: 0 0 0   0px rgba(45,106,79,0.55); }
+  100% { box-shadow: 0 0 0  28px rgba(45,106,79,0);    }
+}
+@keyframes successCheckIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.success-pop  { animation: successPop  0.65s cubic-bezier(0.175,0.885,0.32,1.275) both; }
+.success-ring { animation: successRing 1.40s ease-out 0.30s infinite; }
+.success-text { animation: successCheckIn 0.5s ease-out 0.4s both; }
+
+/* ============================================================
+   MISSION / VISION CARD LIFT
+   ============================================================ */
+
+.mission-card {
+  transition: transform 0.30s ease, box-shadow 0.30s ease;
+}
+.mission-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 26px 52px rgba(26,71,42,0.22);
+}
+
+/* ============================================================
+   STAT NUMBER HIGHLIGHT ON HOVER
+   ============================================================ */
+
+.stat-highlight {
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+}
+.stat-highlight:hover {
+  transform: scale(1.06);
+  text-shadow: 0 0 22px rgba(212,160,23,0.45);
+}
+
+/* ============================================================
+   SUPPLY OPTION CARD (private label)
+   ============================================================ */
+
+.supply-card {
+  transition: transform 0.30s ease, box-shadow 0.30s ease;
+}
+.supply-card:hover {
+  transform: translateY(-9px) scale(1.01);
+  box-shadow: 0 26px 52px rgba(26,71,42,0.25);
+}
+
+/* ============================================================
+   WHO-WE-SERVE CARD (private label)
+   ============================================================ */
+
+.serve-card {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background-color 0.28s ease;
+}
+.serve-card:hover {
+  transform: translateY(-7px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(26,71,42,0.14);
+  background-color: #e8f8ef;
+}
+
+/* ============================================================
+   FACILITY CARD HOVER
+   ============================================================ */
+
+.facility-card {
+  transition: transform 0.30s ease, box-shadow 0.30s ease;
+}
+.facility-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(26,71,42,0.15);
+}
+
+/* ============================================================
+   FORM INPUT FOCUS GLOW (contact page)
+   ============================================================ */
+
+.form-input:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 4px rgba(45,106,79,0.14);
+  transform: translateY(-1px);
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+/* ============================================================
+   NUMBERED STEP GLOW (export services / infra process)
+   ============================================================ */
+
+@keyframes numGlow {
+  0%,100% { text-shadow: 0 0 0 rgba(212,160,23,0); }
+  50%      { text-shadow: 0 0 16px rgba(212,160,23,0.50); }
+}
+.step-num-glow { animation: numGlow 3s ease-in-out infinite; }
+
+/* ============================================================
+   SCROLL REVEAL — flip-in type
+   ============================================================ */
+
+.sr-flip {
+  opacity: 0;
+  transform: perspective(600px) rotateX(18deg) translateY(28px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+  will-change: opacity, transform;
+}
+.sr-flip.sr-visible { opacity: 1; transform: perspective(600px) rotateX(0deg) translateY(0); }
+
+/* ============================================================
    ACCESSIBILITY: respect reduced-motion
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  .sr-up,.sr-left,.sr-right,.sr-pop,.sr-zoom,.sr-fade {
+  .sr-up,.sr-left,.sr-right,.sr-pop,.sr-zoom,.sr-fade,.sr-flip {
     opacity: 1 !important; transform: none !important; transition: none !important;
   }
   .hero-badge,.hero-title,.hero-desc,.hero-buttons,.hero-certs,.hero-slideshow {
     animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important;
   }
-  .floating-leaf   { display: none; }
-  .accent-line-anim{ width: 60px; opacity: 1; animation: none; }
-  .cta-animated-bg { animation: none; }
-  .cert-badge-glow { animation: none; }
-  .scroll-progress-bar { display: none; }
+  .ph-breadcrumb,.ph-title,.ph-desc {
+    animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important;
+  }
+  .floating-leaf         { display: none; }
+  .accent-line-anim      { width: 60px; opacity: 1; animation: none; }
+  .cta-animated-bg       { animation: none; }
+  .cert-badge-glow       { animation: none; }
+  .scroll-progress-bar   { display: none; }
+  .page-hero-animated    { animation: none; }
+  .float-icon,.float-icon-slow,.float-icon-delayed { animation: none !important; }
+  .timeline-dot-pulse    { animation: none !important; }
+  .success-pop,.success-ring,.success-text { animation: none !important; opacity: 1 !important; }
+  .step-num-glow         { animation: none; }
+  .timeline-connector    { transform: scaleY(1) !important; }
+  .tag-pop               { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 
 /* === Hero Slideshow === */

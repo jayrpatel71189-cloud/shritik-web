@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Mail, Phone, MapPin, CheckCircle, Send, Loader2 } from 'lucide-react';
+import PageHeroDecor from '../components/PageHeroDecor';
 
 type FormData = {
   name: string;
@@ -67,14 +68,18 @@ export default function ContactPage() {
 
   return (
     <>
-      <div className="page-hero">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="breadcrumb">
+      {/* Animated Page Hero */}
+      <div className="page-hero-animated">
+        <PageHeroDecor />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="breadcrumb ph-breadcrumb">
             <Link href="/">Home</Link><span>/</span>
             <span className="text-white">Contact Us</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Contact Us</h1>
-          <p className="text-green-100 text-lg max-w-2xl">Send us your export inquiry, product requirement, or request for samples. We respond within 24 hours.</p>
+          <h1 className="ph-title font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Contact Us</h1>
+          <p className="ph-desc text-green-100 text-lg max-w-2xl">
+            Send us your export inquiry, product requirement, or request for samples. We respond within 24 hours.
+          </p>
         </div>
       </div>
 
@@ -85,12 +90,23 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center py-20 text-center">
-                  <div className="w-20 h-20 rounded-full bg-[#f0fdf4] flex items-center justify-center mb-6">
-                    <CheckCircle className="w-10 h-10 text-[#2d6a4f]" />
+                  <div className="w-24 h-24 rounded-full bg-[#f0fdf4] flex items-center justify-center mb-6 success-pop success-ring">
+                    <CheckCircle className="w-12 h-12 text-[#2d6a4f]" />
                   </div>
-                  <h2 className="font-serif text-3xl font-bold text-[#1a472a] mb-3">Inquiry Received!</h2>
-                  <p className="text-gray-600 max-w-md mb-8">Thank you for reaching out. Our export team will review your inquiry and respond within 24 hours.</p>
-                  <button onClick={() => { setSubmitted(false); setForm({ name: '', company: '', country: '', email: '', phone: '', product: '', quantity: '', message: '' }); }} className="btn-primary">
+                  <h2 className="font-serif text-3xl font-bold text-[#1a472a] mb-3 success-text">
+                    Inquiry Received!
+                  </h2>
+                  <p className="text-gray-600 max-w-md mb-8 success-text" style={{ animationDelay: '0.55s' }}>
+                    Thank you for reaching out. Our export team will review your inquiry and respond within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setForm({ name: '', company: '', country: '', email: '', phone: '', product: '', quantity: '', message: '' });
+                    }}
+                    className="btn-primary success-text"
+                    style={{ animationDelay: '0.7s' }}
+                  >
                     Send Another Inquiry <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -142,7 +158,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label className="form-label">Your Message / Requirements *</label>
-                    <textarea name="message" value={form.message} onChange={handleChange} rows={5} className="form-input resize-none" placeholder="Tell us about your product requirements, grade preferences, packaging needs, certifications required..." />
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      rows={5}
+                      className="form-input resize-none"
+                      placeholder="Tell us about your product requirements, grade preferences, packaging needs, certifications required..."
+                    />
                     {errors.message && <p className="form-error">{errors.message}</p>}
                   </div>
                   <button type="submit" disabled={submitting} className="btn-primary w-full sm:w-auto justify-center">
@@ -158,7 +181,7 @@ export default function ContactPage() {
 
             {/* Sidebar */}
             <div className="space-y-6">
-              <div className="bg-[#f8fdf9] border border-green-100 rounded-2xl p-6">
+              <div className="bg-[#f8fdf9] border border-green-100 rounded-2xl p-6 card-shimmer">
                 <h3 className="font-semibold text-[#1a472a] mb-4">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
@@ -172,7 +195,9 @@ export default function ContactPage() {
                     <Mail className="w-5 h-5 text-[#2d6a4f] mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-gray-900">Email</p>
-                      <a href="mailto:info@shritikenterprises.com" className="text-sm text-[#2d6a4f] hover:text-[#1a472a]">info@shritikenterprises.com</a>
+                      <a href="mailto:info@shritikenterprises.com" className="text-sm text-[#2d6a4f] hover:text-[#1a472a]">
+                        info@shritikenterprises.com
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -185,7 +210,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="bg-[#1a472a] rounded-2xl p-6 text-white">
+              <div className="bg-[#1a472a] rounded-2xl p-6 text-white card-shimmer">
                 <h3 className="font-semibold text-white mb-3">What to Include</h3>
                 <ul className="space-y-2 text-sm text-green-200">
                   {[
@@ -204,9 +229,11 @@ export default function ContactPage() {
                 </ul>
               </div>
 
-              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 card-shimmer">
                 <h3 className="font-semibold text-amber-900 mb-2">Response Time</h3>
-                <p className="text-sm text-amber-800">We respond to all export inquiries within <strong>24 business hours</strong>. For urgent inquiries, include your WhatsApp number.</p>
+                <p className="text-sm text-amber-800">
+                  We respond to all export inquiries within <strong>24 business hours</strong>. For urgent inquiries, include your WhatsApp number.
+                </p>
               </div>
             </div>
           </div>
