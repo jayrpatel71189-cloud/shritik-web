@@ -1,67 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150">
   <defs>
-    <radialGradient id="cashewBody" cx="40%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#F5DFA0"/>
-      <stop offset="60%" stop-color="#D4A040"/>
-      <stop offset="100%" stop-color="#A07018"/>
+    <radialGradient id="cg1" cx="32%" cy="28%" r="68%">
+      <stop offset="0%"   stop-color="#FFFBE8"/>
+      <stop offset="18%"  stop-color="#F8E068"/>
+      <stop offset="48%"  stop-color="#DCA020"/>
+      <stop offset="78%"  stop-color="#C08018"/>
+      <stop offset="100%" stop-color="#9A6010"/>
     </radialGradient>
-    <radialGradient id="cashewShine" cx="35%" cy="25%" r="50%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    <radialGradient id="cg2" cx="28%" cy="22%" r="42%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.78"/>
+      <stop offset="55%"  stop-color="#FFFEF0" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#FFFFFF"  stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="cg3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#3C1E00" stop-opacity="0"/>
+      <stop offset="78%"  stop-color="#3C1E00" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#3C1E00" stop-opacity="0.18"/>
+    </linearGradient>
+    <filter id="cds" x="-20%" y="-15%" width="140%" height="155%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#7A5008" flood-opacity="0.38"/>
+    </filter>
+    <clipPath id="cnc">
+      <path d="M 162,70 C 158,50 138,30 110,20 C 82,10 52,14 32,30 C 14,44 8,64 16,82 C 24,98 40,112 62,120 C 84,128 110,126 132,116 C 150,106 160,90 162,78 C 162,74 162,72 162,70 Z"/>
+    </clipPath>
   </defs>
 
-  <!-- Main cashew kernel body: curved kidney/crescent shape -->
-  <path d="M 22 82
-           C 10 70, 8 48, 18 32
-           C 28 16, 52 10, 70 20
-           C 88 30, 98 52, 90 70
-           C 82 86, 64 94, 48 90
-           C 34 86, 26 88, 22 82 Z"
-        fill="url(#cashewBody)"
-        stroke="#8B5E10"
-        stroke-width="2.5"/>
+  <ellipse cx="96" cy="142" rx="60" ry="6" fill="#9A7010" opacity="0.2"/>
 
-  <!-- Shine overlay -->
-  <path d="M 22 82
-           C 10 70, 8 48, 18 32
-           C 28 16, 52 10, 70 20
-           C 88 30, 98 52, 90 70
-           L 78 62
-           C 84 48, 76 30, 62 22
-           C 46 14, 26 20, 20 36
-           Z"
-        fill="url(#cashewShine)"/>
+  <path d="M 162,70 C 158,50 138,30 110,20 C 82,10 52,14 32,30 C 14,44 8,64 16,82 C 24,98 40,112 62,120 C 84,128 110,126 132,116 C 150,106 160,90 162,78 C 162,74 162,72 162,70 Z"
+        fill="url(#cg1)" filter="url(#cds)"/>
 
-  <!-- Inner concave curve — characteristic cashew feature -->
-  <path d="M 28 78 C 16 62, 16 40, 26 28"
-        fill="none"
-        stroke="#7A4C08"
-        stroke-width="3"
-        stroke-linecap="round"
-        opacity="0.4"/>
+  <path d="M 162,70 C 158,50 138,30 110,20 C 82,10 52,14 32,30 C 14,44 8,64 16,82 C 24,98 40,112 62,120 C 84,128 110,126 132,116 C 150,106 160,90 162,78 C 162,74 162,72 162,70 Z"
+        fill="url(#cg2)"/>
 
-  <!-- Surface highlight ridge -->
-  <path d="M 44 14 C 64 8, 84 24, 92 50"
-        fill="none"
-        stroke="#FAEAC0"
-        stroke-width="4"
-        stroke-linecap="round"
-        opacity="0.55"/>
+  <path d="M 162,70 C 158,50 138,30 110,20 C 82,10 52,14 32,30 C 14,44 8,64 16,82 C 24,98 40,112 62,120 C 84,128 110,126 132,116 C 150,106 160,90 162,78 C 162,74 162,72 162,70 Z"
+        fill="url(#cg3)"/>
 
-  <!-- Subtle mid-surface crease -->
-  <path d="M 36 18 C 54 12, 76 26, 84 50"
-        fill="none"
-        stroke="#E0B840"
-        stroke-width="2"
-        stroke-linecap="round"
-        opacity="0.35"/>
-
-  <!-- Tip shadow at the narrow end -->
-  <path d="M 68 20 C 74 26, 76 34, 74 40"
-        fill="none"
-        stroke="#6B4408"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        opacity="0.45"/>
+  <g clip-path="url(#cnc)">
+    <path d="M 40,32 C 70,22 112,24 148,44" fill="none" stroke="#FAEABB" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+    <path d="M 30,50 C 60,38 104,40 142,62" fill="none" stroke="#F0E0A0" stroke-width="2"   stroke-linecap="round" opacity="0.38"/>
+    <path d="M 22,68 C 52,56 96,58 134,78"  fill="none" stroke="#E8D490" stroke-width="1.8" stroke-linecap="round" opacity="0.28"/>
+    <path d="M 18,86 C 46,74 90,76 128,96"  fill="none" stroke="#E0CC80" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
+  </g>
 </svg>
