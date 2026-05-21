@@ -50,6 +50,7 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -62,9 +63,23 @@ export default function ContactPage() {
     const errs = validate(form);
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setSubmitting(false);
-    setSubmitted(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? 'Submission failed. Please try again.');
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -169,6 +184,9 @@ export default function ContactPage() {
                     />
                     {errors.message && <p className="form-error">{errors.message}</p>}
                   </div>
+                  {submitError && (
+                    <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">{submitError}</p>
+                  )}
                   <button type="submit" disabled={submitting} className="btn-primary w-full sm:w-auto justify-center">
                     {submitting ? (
                       <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</>
