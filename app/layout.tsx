@@ -72,11 +72,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/logo.ico", type: "image/x-icon" },
+      { url: "/logo.png", type: "image/png", sizes: "512x512" },
     ],
     shortcut: "/logo.ico",
-    apple: "/logo.ico",
+    apple: { url: "/logo.png", type: "image/png" },
   },
   category: "food",
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({
