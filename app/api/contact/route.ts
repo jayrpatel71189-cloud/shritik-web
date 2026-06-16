@@ -168,7 +168,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const { token, name, company, country, email, phone, product, quantity, message } = body;
+  const { token, name, company, country, email, phone, phoneCountryCode, product, quantity, message } = body;
 
   // Verify anti-replay token
   if (typeof token !== 'string' || !verifyToken(token, secret)) {
@@ -209,6 +209,11 @@ export async function POST(req: NextRequest) {
   if (!str(phone).trim()) errors.phone = 'Phone number is required';
   else if (str(phone).length > 50) errors.phone = 'Phone number must be under 50 characters';
 
+  // phoneCountryCode is optional meta — validate format if provided
+  if (str(phoneCountryCode) && !/^\+\d{1,4}$/.test(str(phoneCountryCode).trim())) {
+    errors.phoneCountryCode = 'Invalid country phone code';
+  }
+
   if (!str(product).trim() || !VALID_PRODUCTS.has(str(product))) {
     errors.product = 'Please select a valid product';
   }
@@ -226,12 +231,14 @@ export async function POST(req: NextRequest) {
   consumeToken(token);
 
   // Sanitize all fields
+  const dialCode = sanitize(str(phoneCountryCode));
+  const phoneRaw = sanitize(str(phone));
   const safe = {
     name: sanitize(str(name)),
     company: sanitize(str(company)),
     country: sanitize(str(country)),
     email: sanitize(str(email)),
-    phone: sanitize(str(phone)),
+    phone: dialCode ? `${dialCode} ${phoneRaw}` : phoneRaw,
     product: sanitize(str(product)),
     quantity: sanitize(str(quantity)),
     message: sanitize(str(message)),
