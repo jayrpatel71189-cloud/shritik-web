@@ -341,7 +341,7 @@ export default function ContactPage() {
                             aria-haspopup="listbox"
                             aria-expanded={dialDropdownOpen}
                           >
-                            <span className="text-base leading-none">{selectedCountry.flag}</span>
+                            <img src={`https://flagcdn.com/w20/${selectedCountry.code.toLowerCase()}.png`} alt={selectedCountry.code} width={20} height={14} className="rounded-sm object-cover flex-shrink-0" />
                             <span className="font-medium">{selectedCountry.code}</span>
                             <span className="text-gray-500">{selectedCountry.dialCode}</span>
                             <ChevronDown className="w-3 h-3 text-gray-400 ml-auto" />
@@ -378,7 +378,7 @@ export default function ContactPage() {
                                     }}
                                     className={`flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-green-50 ${c.code === selectedCountry.code ? 'bg-green-50 font-medium' : ''}`}
                                   >
-                                    <span className="text-base leading-none w-6 text-center">{c.flag}</span>
+                                    <img src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`} alt={c.code} width={20} height={14} className="rounded-sm object-cover flex-shrink-0" />
                                     <span className="font-medium w-8">{c.code}</span>
                                     <span className="text-gray-500">{c.dialCode}</span>
                                     <span className="text-gray-400 truncate">{c.name}</span>
