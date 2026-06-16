@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'crypto';
 import { Resend } from 'resend';
 
+export const dynamic = 'force-dynamic';
+
 const TOKEN_TTL_SECONDS = 10 * 60; // token valid for 10 minutes
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour per IP
