@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Mail, Phone, MapPin, CheckCircle, Send, Loader2, AlertCircle } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MapPin, CheckCircle, Send, Loader2, AlertCircle, ChevronDown } from 'lucide-react';
 import PageHeroDecor from '../components/PageHeroDecor';
 
 type CountryOption = {
@@ -152,6 +152,20 @@ export default function ContactPage() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(DEFAULT_COUNTRY);
+  const [dialDropdownOpen, setDialDropdownOpen] = useState(false);
+  const [dialSearch, setDialSearch] = useState('');
+  const dialDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dialDropdownRef.current && !dialDropdownRef.current.contains(e.target as Node)) {
+        setDialDropdownOpen(false);
+        setDialSearch('');
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const fetchToken = useCallback(async () => {
     try {
@@ -168,13 +182,6 @@ export default function ContactPage() {
   useEffect(() => {
     fetchToken();
   }, [fetchToken]);
-
-  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const country = COUNTRIES.find((c) => c.code === e.target.value) ?? DEFAULT_COUNTRY;
-    setSelectedCountry(country);
-    setForm((prev) => ({ ...prev, phoneCountryCode: country.dialCode, phone: '' }));
-    if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
-  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -324,19 +331,63 @@ export default function ContactPage() {
                     <div>
                       <label className="form-label">Phone / WhatsApp *</label>
                       <div className="flex gap-0">
-                        <select
-                          value={selectedCountry.code}
-                          onChange={handleCountryChange}
-                          className="form-input rounded-r-none border-r-0 pr-2 pl-2 w-auto flex-shrink-0 text-sm"
-                          style={{ minWidth: '90px', maxWidth: '110px' }}
-                          aria-label="Country phone code"
-                        >
-                          {COUNTRIES.map((c) => (
-                            <option key={c.code} value={c.code}>
-                              {c.flag} {c.code} {c.dialCode}
-                            </option>
-                          ))}
-                        </select>
+                        {/* Custom country dial-code picker */}
+                        <div ref={dialDropdownRef} className="relative flex-shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => { setDialDropdownOpen((o) => !o); setDialSearch(''); }}
+                            className="form-input rounded-r-none border-r-0 flex items-center gap-1 px-2 text-sm h-full whitespace-nowrap"
+                            style={{ minWidth: '100px' }}
+                            aria-haspopup="listbox"
+                            aria-expanded={dialDropdownOpen}
+                          >
+                            <span className="text-base leading-none">{selectedCountry.flag}</span>
+                            <span className="font-medium">{selectedCountry.code}</span>
+                            <span className="text-gray-500">{selectedCountry.dialCode}</span>
+                            <ChevronDown className="w-3 h-3 text-gray-400 ml-auto" />
+                          </button>
+                          {dialDropdownOpen && (
+                            <div className="absolute z-50 top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+                              <div className="p-2 border-b border-gray-100">
+                                <input
+                                  type="text"
+                                  value={dialSearch}
+                                  onChange={(e) => setDialSearch(e.target.value)}
+                                  placeholder="Search country..."
+                                  className="w-full text-sm px-2 py-1.5 border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
+                                  autoFocus
+                                />
+                              </div>
+                              <ul role="listbox" className="max-h-52 overflow-y-auto">
+                                {COUNTRIES.filter((c) =>
+                                  !dialSearch ||
+                                  c.name.toLowerCase().includes(dialSearch.toLowerCase()) ||
+                                  c.code.toLowerCase().includes(dialSearch.toLowerCase()) ||
+                                  c.dialCode.includes(dialSearch)
+                                ).map((c) => (
+                                  <li
+                                    key={c.code}
+                                    role="option"
+                                    aria-selected={c.code === selectedCountry.code}
+                                    onClick={() => {
+                                      setSelectedCountry(c);
+                                      setForm((prev) => ({ ...prev, phoneCountryCode: c.dialCode, phone: '' }));
+                                      if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
+                                      setDialDropdownOpen(false);
+                                      setDialSearch('');
+                                    }}
+                                    className={`flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-green-50 ${c.code === selectedCountry.code ? 'bg-green-50 font-medium' : ''}`}
+                                  >
+                                    <span className="text-base leading-none w-6 text-center">{c.flag}</span>
+                                    <span className="font-medium w-8">{c.code}</span>
+                                    <span className="text-gray-500">{c.dialCode}</span>
+                                    <span className="text-gray-400 truncate">{c.name}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
                         <input
                           name="phone"
                           value={form.phone}
