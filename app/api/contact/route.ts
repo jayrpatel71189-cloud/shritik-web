@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'crypto';
-import { Resend } from 'resend';
 
 export const dynamic = 'force-dynamic';
 
@@ -307,6 +306,7 @@ export async function POST(req: NextRequest) {
     .join('\n');
 
   try {
+    const { Resend } = await import('resend');
     const resend = new Resend(resendApiKey);
 
     const { error } = await resend.emails.send({
