@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'crypto';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 const TOKEN_TTL_SECONDS = 10 * 60; // token valid for 10 minutes
 const RATE_LIMIT_MAX = 5;
@@ -133,11 +133,11 @@ export async function POST(req: NextRequest) {
   }
 
   const secret = process.env.CONTACT_FORM_SECRET;
-  const gmailUser = process.env.GMAIL_USER;
-  const gmailPass = process.env.GMAIL_APP_PASSWORD;
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const fromEmail = process.env.FROM_EMAIL;
   const recipient = process.env.RECIPIENT_EMAIL;
 
-  if (!secret || !gmailUser || !gmailPass || !recipient) {
+  if (!secret || !resendApiKey || !fromEmail || !recipient) {
     console.error('Missing required environment variables for contact form');
     return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
   }
@@ -305,21 +305,24 @@ export async function POST(req: NextRequest) {
     .join('\n');
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false, // STARTTLS
-      auth: { user: gmailUser, pass: gmailPass },
-    });
+    const resend = new Resend(resendApiKey);
 
-    await transporter.sendMail({
-      from: `"Shritik Enterprises Contact Form" <${gmailUser}>`,
+    const { error } = await resend.emails.send({
+      from: `Shritik Enterprises <${fromEmail}>`,
       to: recipient,
       replyTo: safe.email,
       subject: `Export Inquiry: ${safe.product} — ${safe.company} (${safe.country})`,
       text: textBody,
       html: htmlBody,
     });
+
+    if (error) {
+      console.error('Contact form: email delivery failed', error);
+      return NextResponse.json(
+        { error: 'Failed to send message. Please try again or email us directly.' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch {
